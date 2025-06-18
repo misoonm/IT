@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأدوات والموارد - موقع تعليم تقنية المعلومات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f1f5f9;
+            --accent: #e11d48;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 50%;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .user-actions a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main-nav {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            position: relative;
+        }
+        
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        .main-nav .active a {
+            background-color: var(--primary);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown a {
+            color: var(--secondary);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Resources Page */
+        .resources-page {
+            padding: 60px 0;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .resource-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .resource-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .resource-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .resource-links {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .resource-links li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+        
+        .resource-links li:last-child {
+            border-bottom: none;
+        }
+        
+        .resource-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .resource-links a:hover {
+            color: var(--primary);
+        }
+        
+        .resource-links a i {
+            color: var(--primary);
+        }
+        
+        .category-title {
+            font-size: 32px;
+            margin: 60px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+        
+        /* Books Section */
+        .books-section {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .book-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .book-img {
+            height: 200px;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .book-content {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .book-author {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .book-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .book-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links-footer a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .resources-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .category-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تعل<span>يم</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث عن أداة أو مورد...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> حسابي</a>
+                    <a href="#">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="abood.html"><i class="fas fa-graduation-cap"></i> الدورات التدريبية</a></li>
+                    <li><a href="note.html"><i class="fas fa-blog"></i> المقالات والمدونة</a></li>
+                    <li class="nav-item active">
+                        <a href="tools.html"><i class="fas fa-tools"></i> الأدوات والموارد</a>
+                        <div class="dropdown">
+                            <a href="#"><i class="fas fa-desktop"></i> برامج وأدوات</a>
+                            <a href="#"><i class="fas fa-book"></i> كتب ومراجع</a>
+                            <a href="#"><i class="fas fa-globe"></i> مواقع مفيدة</a>
+                            <a href="#"><i class="fas fa-box-open"></i> مكتبات وأطر عمل</a>
+                        </div>
+                    </li>
+                    <li><a href="public.html"><i class="fas fa-users"></i> مجتمع المتعلمين</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>الأدوات والموارد</h1>
+                <p>اكتشف مجموعة واسعة من الأدوات والبرامج والمراجع المفيدة لتطوير مهاراتك في مجال تكنولوجيا المعلومات</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Page -->
+    <section class="resources-page">
+        <div class="container">
+            <h2 class="category-title"><i class="fas fa-desktop"></i> برامج وأدوات موصى بها</h2>
+            
+            <div class="resources-grid">
+                <!-- Resource 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="resource-title">أدوات التطوير</h3>
+                    <p class="resource-description">مجموعة من أفضل بيئات التطوير وأدوات كتابة الأكواد لبرمجة وتطوير التطبيقات</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Visual Studio Code
+                                <span class="free-badge">مجاني</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> JetBrains IntelliJ IDEA
+                                <span class="paid-badge">مدفوع</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Sublime Text
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> GitHub Copilot
+                                <span class="ai-badge">ذكاء اصطناعي</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="resource-title">أدوات التصميم</h3>
+                    <p class="resource-description">برامج تصميم واجهات المستخدم وتجربة المستخدم لإنشاء تطبيقات جذابة وسهلة الاستخدام</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Figma
+                                <span class="free-badge">مجاني</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Adobe XD
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Sketch
+                                <span class="mac-badge">ماك فقط</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> InVision
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="resource-title">أدوات الخوادم والسحابة</h3>
+                    <p class="resource-description">حلول لإدارة الخوادم ونشر التطبيقات على بيئات السحابة المختلفة</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Docker
+                                <span class="free-badge">مجاني</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Kubernetes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> AWS CLI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Postman
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Resource 4 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="resource-title">أدوات الأمن السيبراني</h3>
+                    <p class="resource-description">برامج وأدوات لاختبار الاختراق وحماية الأنظمة والشبكات</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Wireshark
+                                <span class="free-badge">مجاني</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Metasploit
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Nmap
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Burp Suite
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Resource 5 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="resource-title">أدوات قواعد البيانات</h3>
+                    <p class="resource-description">برامج لإدارة قواعد البيانات العلائقية وغير العلائقية</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> MySQL Workbench
+                                <span class="free-badge">مجاني</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> MongoDB Compass
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> TablePlus
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> DBeaver
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Resource 6 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="resource-title">أدوات تحليل البيانات</h3>
+                    <p class="resource-description">برامج لتحليل البيانات واستخراج الرؤى منها</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Tableau Public
+                                <span class="free-badge">مجاني</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Power BI
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Google Data Studio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-link"></i> Jupyter Notebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2 class="category-title"><i class="fas fa-box-open"></i> مكتبات وأطر عمل شائعة</h2>
+            
+            <div class="resources-grid">
+                <!-- Framework 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3 class="resource-title">أطر عمل JavaScript</h3>
+                    <p class="resource-description">أشهر أطر العمل لتطوير واجهات المستخدم وتطبيقات الويب</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-react"></i> React
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-angular"></i> Angular
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-vuejs"></i> Vue.js
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-node-js"></i> Node.js
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Framework 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3 class="resource-title">مكتبات Python</h3>
+                    <p class="resource-description">مكتبات بايثون أساسية للتحليل البيانات والذكاء الاصطناعي</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-brain"></i> TensorFlow
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-project-diagram"></i> PyTorch
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-chart-bar"></i> Pandas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-chart-line"></i> Matplotlib
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Framework 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="resource-title">أطر عمل تطبيقات الجوال</h3>
+                    <p class="resource-description">أطر عمل لتطوير تطبيقات الهاتف المحمول متعددة المنصات</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-react"></i> React Native
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-android"></i> Flutter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-code"></i> Xamarin
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-code"></i> Ionic
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2 class="category-title"><i class="fas fa-globe"></i> مواقع مفيدة</h2>
+            
+            <div class="resources-grid">
+                <!-- Website 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="resource-title">منصات تعليمية</h3>
+                    <p class="resource-description">أفضل المواقع لتعلم البرمجة وتقنية المعلومات عبر الإنترنت</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-graduation-cap"></i> Coursera
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-udemy"></i> Udemy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-code"></i> freeCodeCamp
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-book"></i> Khan Academy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Website 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fab fa-stack-overflow"></i>
+                    </div>
+                    <h3 class="resource-title">مجتمعات المطورين</h3>
+                    <p class="resource-description">مواقع لطرح الأسئلة ومشاركة المعرفة مع مجتمع المطورين</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-stack-overflow"></i> Stack Overflow
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-reddit"></i> Reddit
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-dev"></i> Dev.to
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Website 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="resource-title">خدمات سحابية</h3>
+                    <p class="resource-description">مواقع تقدم خدمات سحابية لنشر التطبيقات وإدارة البنية التحتية</p>
+                    <ul class="resource-links">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-aws"></i> Amazon Web Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-google"></i> Google Cloud
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-microsoft"></i> Microsoft Azure
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-server"></i> DigitalOcean
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Books Section -->
+            <div class="books-section">
+                <div class="container">
+                    <h2 class="category-title"><i class="fas fa-book"></i> كتب ومراجع مقترحة</h2>
+                    
+                    <div class="books-container">
+                        <!-- Book 1 -->
+                        <div class="book-card">
+                            <div class="book-img">Clean Code<br>كتاب البرمجة النظيفة</div>
+                            <div class="book-content">
+                                <h3 class="book-title">Clean Code: دليل الممارسات الجيدة للبرمجة</h3>
+                                <div class="book-author">روبرت مارتن</div>
+                                <p>كتاب أساسي لكل مبرمج يريد تحسين جودة كوده وتطوير مهاراته في كتابة برمجيات قابلة للصيانة والتطوير.</p>
+                                <a href="#" class="book-link">
+                                    <i class="fas fa-external-link-alt"></i> عرض الكتاب
+                                </a>
+                                <div class="book-meta">
+                                    <span>الصفحات: 464</span>
+                                    <span>السنة: 2008</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 2 -->
+                        <div class="book-card">
+                            <div class="book-img">Design Patterns<br>أنماط التصميم</div>
+                            <div class="book-content">
+                                <h3 class="book-title">Design Patterns: عناصر البرمجيات القابلة لإعادة الاستخدام</h3>
+                                <div class="book-author">عصابة الأربعة</div>
+                                <p>مرجع كلاسيكي يشرح أنماط التصميم الأساسية في البرمجة الكائنية التوجه وكيفية تطبيقها في مشاريع البرمجيات.</p>
+                                <a href="#" class="book-link">
+                                    <i class="fas fa-external-link-alt"></i> عرض الكتاب
+                                </a>
+                                <div class="book-meta">
+                                    <span>الصفحات: 395</span>
+                                    <span>السنة: 1994</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 3 -->
+                        <div class="book-card">
+                            <div class="book-img">The Pragmatic Programmer<br>المبرمج العملي</div>
+                            <div class="book-content">
+                                <h3 class="book-title">The Pragmatic Programmer: دليل المطور المحترف</h3>
+                                <div class="book-author">أندرو هانت و ديفيد توماس</div>
+                                <p>كتاب يقدم نصائح عملية وتقنيات فعالة لتطوير البرمجيات وإدارة المشاريع البرمجية بكفاءة.</p>
+                                <a href="#" class="book-link">
+                                    <i class="fas fa-external-link-alt"></i> عرض الكتاب
+                                </a>
+                                <div class="book-meta">
+                                    <span>الصفحات: 352</span>
+                                    <span>السنة: 1999</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 4 -->
+                        <div class="book-card">
+                            <div class="book-img">Introduction to Algorithms<br>مقدمة في الخوارزميات</div>
+                            <div class="book-content">
+                                <h3 class="book-title">Introduction to Algorithms: كتاب شامل عن الخوارزميات</h3>
+                                <div class="book-author">توماس كورمن وآخرون</div>
+                                <p>مرجع شامل يغطي الخوارزميات الأساسية والمتقدمة مع تحليل كفاءتها وتطبيقاتها العملية.</p>
+                                <a href="#" class="book-link">
+                                    <i class="fas fa-external-link-alt"></i> عرض الكتاب
+                                </a>
+                                <div class="book-meta">
+                                    <span>الصفحات: 1292</span>
+                                    <span>السنة: 1990</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <div class="footer-about">
+                        <p>نحن منصة تعليمية متخصصة في تقديم دورات ومقالات تقنية عالية الجودة لمساعدة المهتمين بمجال تكنولوجيا المعلومات على تطوير مهاراتهم والارتقاء بمستواهم المهني.</p>
+                        <div class="social-links-footer">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="abood.html"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                        <li><a href="note.html"><i class="fas fa-chevron-left"></i> المقالات والمدونة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأدوات والموارد</a></li>
+                        <li><a href="public.html"><i class="fas fa-chevron-left"></i> مجتمع المتعلمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>أقسام الموارد</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> برامج وأدوات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مكتبات وأطر عمل</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مواقع مفيدة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> كتب ومراجع</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات قانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع تعليم تقنية المعلومات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to resource cards on hover
+            const resourceCards = document.querySelectorAll('.resource-card');
+            
+            resourceCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Resource links
+            const resourceLinks = document.querySelectorAll('.resource-links a, .book-link');
+            resourceLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const resourceName = this.textContent;
+                    alert(`سيتم توجيهك إلى صفحة المورد: ${resourceName}`);
+                });
+            });
+            
+            // Search functionality
+            const searchBtn = document.querySelector('.search-bar button');
+            searchBtn.addEventListener('click', function() {
+                const searchTerm = document.querySelector('.search-bar input').value;
+                if (searchTerm.trim() !== '') {
+                    alert(`سيتم البحث عن: ${searchTerm}`);
+                    // In a real implementation, you would filter resources
+                }
+            });
+        });
+    </script>
+</body>
+</html>
