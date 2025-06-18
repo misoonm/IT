@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المقالات والمدونة - موقع تعليم تقنية المعلومات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f1f5f9;
+            --accent: #e11d48;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 50%;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .user-actions a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main-nav {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            position: relative;
+        }
+        
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        .main-nav .active a {
+            background-color: var(--primary);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown a {
+            color: var(--secondary);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Blog Page */
+        .blog-page {
+            padding: 60px 0;
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+        }
+        
+        /* Articles Section */
+        .articles-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .section-title {
+            font-size: 28px;
+            color: var(--secondary);
+        }
+        
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .view-all:hover {
+            color: var(--primary-dark);
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .article-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-img {
+            height: 200px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .article-meta i {
+            margin-left: 5px;
+        }
+        
+        .article-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .read-more:hover {
+            gap: 12px;
+        }
+        
+        /* Blog Sidebar */
+        .blog-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .widget-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            position: relative;
+        }
+        
+        .widget-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .search-widget {
+            position: relative;
+        }
+        
+        .search-widget input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-widget button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            cursor: pointer;
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+        
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .categories-list a:hover {
+            color: var(--primary);
+        }
+        
+        .categories-list span {
+            background-color: var(--light);
+            padding: 2px 8px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+        
+        .popular-articles {
+            list-style: none;
+        }
+        
+        .popular-article {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .popular-article:last-child {
+            border-bottom: none;
+        }
+        
+        .popular-img {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .popular-content {
+            flex: 1;
+        }
+        
+        .popular-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        
+        .popular-date {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .tags-widget {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--secondary);
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .newsletter-widget input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Featured Article */
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 60px;
+        }
+        
+        .featured-img {
+            height: 350px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .featured-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        
+        .featured-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .featured-excerpt {
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+        
+        .pagination a, .pagination span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--secondary);
+            background-color: white;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .pagination a:hover, .pagination .active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links-footer a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-img {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-title {
+                font-size: 26px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .article-img, .featured-img {
+                height: 180px;
+            }
+            
+            .article-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تعل<span>يم</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث عن مقال...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> حسابي</a>
+                    <a href="#">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="abood.html"><i class="fas fa-graduation-cap"></i> الدورات التدريبية</a></li>
+                    <li class="nav-item active">
+                        <a href="note.html"><i class="fas fa-blog"></i> المقالات والمدونة</a>
+                        <div class="dropdown">
+                            <a href="#"><i class="fas fa-code"></i> تطوير الويب</a>
+                            <a href="#"><i class="fas fa-shield-alt"></i> الأمن السيبراني</a>
+                            <a href="#"><i class="fas fa-network-wired"></i> الشبكات</a>
+                            <a href="#"><i class="fas fa-brain"></i> الذكاء الاصطناعي</a>
+                            <a href="#"><i class="fas fa-cloud"></i> الحوسبة السحابية</a>
+                        </div>
+                    </li>
+                    <li><a href="#"><i class="fas fa-tools"></i> الأدوات والموارد</a></li>
+                    <li><a href="public.html"><i class="fas fa-users"></i> مجتمع المتعلمين</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>المقالات والمدونة</h1>
+                <p>استكشف أحدث المقالات والأخبار التقنية لتطوير مهاراتك والبقاء على اطلاع بأحدث التطورات في عالم التكنولوجيا</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Page -->
+    <section class="blog-page">
+        <div class="container">
+            <!-- Featured Article -->
+            <div class="featured-article">
+                <div class="featured-img">
+                    <div class="featured-category">الذكاء الاصطناعي</div>
+                    مستقبل الذكاء الاصطناعي
+                </div>
+                <div class="featured-content">
+                    <h2 class="featured-title">مستقبل الذكاء الاصطناعي: كيف سيغير حياتنا في السنوات القادمة؟</h2>
+                    <p class="featured-excerpt">استكشاف أحدث التطورات في مجال الذكاء الاصطناعي وتأثيرها على مختلف القطاعات مثل الرعاية الصحية، التعليم، والصناعة. تحليل التحديات والفرص التي يواجهها هذا المجال الحيوي.</p>
+                    <a href="#" class="read-more">
+                        اقرأ المقال كاملاً
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="blog-container">
+                <!-- Main Content -->
+                <div class="blog-content">
+                    <!-- Latest Articles -->
+                    <div class="articles-section">
+                        <div class="section-header">
+                            <h2 class="section-title">أحدث المقالات</h2>
+                            <a href="note.html" class="view-all">عرض الكل</a>
+                        </div>
+                        
+                        <div class="articles-grid">
+                            <!-- Article 1 -->
+                            <div class="article-card">
+                                <div class="article-img">
+                                    <div class="article-category">أمن المعلومات</div>
+                                    أمن المعلومات
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <span><i class="far fa-calendar"></i> 15 يونيو 2023</span>
+                                        <span><i class="far fa-clock"></i> 8 دقائق قراءة</span>
+                                    </div>
+                                    <h3 class="article-title">أفضل الممارسات لحماية بياناتك الشخصية في العصر الرقمي</h3>
+                                    <p class="article-excerpt">دليل شامل للحفاظ على خصوصيتك وأمان بياناتك في ظل تزايد التهديدات الإلكترونية والقرصنة. تعرف على أهم النصائح والأدوات لحماية معلوماتك.</p>
+                                    <a href="#" class="read-more">
+                                        اقرأ المقال
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Article 2 -->
+                            <div class="article-card">
+                                <div class="article-img">
+                                    <div class="article-category">تطوير الويب</div>
+                                    تطوير الويب
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <span><i class="far fa-calendar"></i> 10 يونيو 2023</span>
+                                        <span><i class="far fa-clock"></i> 6 دقائق قراءة</span>
+                                    </div>
+                                    <h3 class="article-title">أطر عمل JavaScript الأكثر طلباً في سوق العمل لعام 2023</h3>
+                                    <p class="article-excerpt">مقارنة شاملة بين React, Angular, Vue.js وأحدث الاتجاهات في تطوير واجهات المستخدم. تعرف على أي إطار عمل يناسب مشروعك القادم.</p>
+                                    <a href="#" class="read-more">
+                                        اقرأ المقال
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Article 3 -->
+                            <div class="article-card">
+                                <div class="article-img">
+                                    <div class="article-category">الحوسبة السحابية</div>
+                                    الحوسبة السحابية
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <span><i class="far fa-calendar"></i> 5 يونيو 2023</span>
+                                        <span><i class="far fa-clock"></i> 10 دقائق قراءة</span>
+                                    </div>
+                                    <h3 class="article-title">مقارنة بين خدمات الحوسبة السحابية: AWS مقابل Azure مقابل Google Cloud</h3>
+                                    <p class="article-excerpt">تحليل مفصل للمميزات والعيوب وأسعار الخدمات السحابية الكبرى لمساعدتك في اختيار الحل الأنسب لمشروعك.</p>
+                                    <a href="#" class="read-more">
+                                        اقرأ المقال
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Article 4 -->
+                            <div class="article-card">
+                                <div class="article-img">
+                                    <div class="article-category">البيانات الضخمة</div>
+                                    البيانات الضخمة
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <span><i class="far fa-calendar"></i> 1 يونيو 2023</span>
+                                        <span><i class="far fa-clock"></i> 7 دقائق قراءة</span>
+                                    </div>
+                                    <h3 class="article-title">أدوات ذكاء الأعمال التي يجب أن تعرفها في 2023</h3>
+                                    <p class="article-excerpt">استعراض لأفضل أدوات تحليل البيانات وذكاء الأعمال مثل Tableau, Power BI، وكيف يمكنها تحويل البيانات إلى رؤى قابلة للتنفيذ.</p>
+                                    <a href="#" class="read-more">
+                                        اقرأ المقال
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Programming Articles -->
+                    <div class="articles-section">
+                        <div class="section-header">
+                            <h2 class="section-title">مقالات البرمجة</h2>
+                            <a href="#" class="view-all">عرض الكل</a>
+                        </div>
+                        
+                        <div class="articles-grid">
+                            <!-- Article 5 -->
+                            <div class="article-card">
+                                <div class="article-img">
+                                    <div class="article-category">بايثون</div>
+                                    لغة بايثون
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <span><i class="far fa-calendar"></i> 28 مايو 2023</span>
+                                        <span><i class="far fa-clock"></i> 9 دقائق قراءة</span>
+                                    </div>
+                                    <h3 class="article-title">دليل شامل لتعلم بايثون للمبتدئين: من الصفر إلى الاحتراف</h3>
+                                    <p class="article-excerpt">خطوة بخطوة لتعلم لغة بايثون من الأساسيات إلى المفاهيم المتقدمة، مع أمثلة عملية ومشاريع تطبيقية.</p>
+                                    <a href="#" class="read-more">
+                                        اقرأ المقال
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Article 6 -->
+                            <div class="article-card">
+                                <div class="article-img">
+                                    <div class="article-category">جافاسكريبت</div>
+                                    جافاسكريبت
+                                </div>
+                                <div class="article-content">
+                                    <div class="article-meta">
+                                        <span><i class="far fa-calendar"></i> 22 مايو 2023</span>
+                                        <span><i class="far fa-clock"></i> 5 دقائق قراءة</span>
+                                    </div>
+                                    <h3 class="article-title">أحدث ميزات ECMAScript 2023 التي يجب على كل مطور معرفتها</h3>
+                                    <p class="article-excerpt">استعراض لأهم الإضافات والتحديثات في أحدث إصدارات جافاسكريبت وكيف يمكنها تحسين كودك وأداء تطبيقاتك.</p>
+                                    <a href="#" class="read-more">
+                                        اقرأ المقال
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#"><i class="fas fa-chevron-right"></i></a>
+                        <span class="active">1</span>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                        <a href="#">12</a>
+                        <a href="#"><i class="fas fa-chevron-left"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="blog-sidebar">
+                    <!-- Search Widget -->
+                    <div class="sidebar-widget search-widget">
+                        <h3 class="widget-title">بحث في المدونة</h3>
+                        <input type="text" placeholder="ابحث عن مقال...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">التصنيفات</h3>
+                        <ul class="categories-list">
+                            <li>
+                                <a href="#">
+                                    تطوير الويب
+                                    <span>24</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    أمن المعلومات
+                                    <span>18</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    الذكاء الاصطناعي
+                                    <span>15</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    الحوسبة السحابية
+                                    <span>12</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    تحليل البيانات
+                                    <span>9</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    الشبكات والأنظمة
+                                    <span>7</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Popular Articles -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">مقالات شائعة</h3>
+                        <ul class="popular-articles">
+                            <li class="popular-article">
+                                <div class="popular-img">أمن المعلومات</div>
+                                <div class="popular-content">
+                                    <h4 class="popular-title">10 خطوات لحماية حساباتك من الاختراق</h4>
+                                    <div class="popular-date">15 مايو 2023</div>
+                                </div>
+                            </li>
+                            <li class="popular-article">
+                                <div class="popular-img">الذكاء الاصطناعي</div>
+                                <div class="popular-content">
+                                    <h4 class="popular-title">كيف تعمل تقنية ChatGPT وكيف تستفيد منها؟</h4>
+                                    <div class="popular-date">8 مايو 2023</div>
+                                </div>
+                            </li>
+                            <li class="popular-article">
+                                <div class="popular-img">تطوير الويب</div>
+                                <div class="popular-content">
+                                    <h4 class="popular-title">أفضل أدوات تطوير الويب الحديثة</h4>
+                                    <div class="popular-date">30 أبريل 2023</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">الكلمات الدلالية</h3>
+                        <div class="tags-widget">
+                            <a href="#" class="tag">برمجة</a>
+                            <a href="#" class="tag">أمن</a>
+                            <a href="#" class="tag">ذكاء اصطناعي</a>
+                            <a href="#" class="tag">سحابة</a>
+                            <a href="#" class="tag">بيانات</a>
+                            <a href="#" class="tag">شبكات</a>
+                            <a href="#" class="tag">بايثون</a>
+                            <a href="#" class="tag">جافاسكريبت</a>
+                            <a href="#" class="tag">React</a>
+                            <a href="#" class="tag">AWS</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">النشرة البريدية</h3>
+                        <p>اشترك لتصلك أحدث المقالات والتحديثات</p>
+                        <input type="email" placeholder="بريدك الإلكتروني">
+                        <button class="newsletter-btn">اشترك الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <div class="footer-about">
+                        <p>نحن منصة تعليمية متخصصة في تقديم دورات ومقالات تقنية عالية الجودة لمساعدة المهتمين بمجال تكنولوجيا المعلومات على تطوير مهاراتهم والارتقاء بمستواهم المهني.</p>
+                        <div class="social-links-footer">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="abood.html"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                        <li><a href="note.html"><i class="fas fa-chevron-left"></i> المقالات والمدونة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأدوات والموارد</a></li>
+                        <li><a href="public.html"><i class="fas fa-chevron-left"></i> مجتمع المتعلمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>أقسام المقالات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطوير الويب</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أمن المعلومات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الذكاء الاصطناعي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الحوسبة السحابية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تحليل البيانات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات قانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع تعليم تقنية المعلومات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to article cards on hover
+            const articleCards = document.querySelectorAll('.article-card');
+            
+            articleCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Read more buttons
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const articleCard = this.closest('.article-card, .featured-article');
+                    const articleTitle = articleCard.querySelector('.article-title, .featured-title').textContent;
+                    alert(`سيتم توجيهك إلى صفحة المقال: "${articleTitle}"`);
+                });
+            });
+            
+            // Newsletter subscription
+            const newsletterBtn = document.querySelector('.newsletter-btn');
+            newsletterBtn.addEventListener('click', function() {
+                const email = document.querySelector('.newsletter-widget input').value;
+                if(email) {
+                    alert(`شكراً على اشتراكك! سيتم إرسال النشرة إلى: ${email}`);
+                } else {
+                    alert('يرجى إدخال بريدك الإلكتروني');
+                }
+            });
+            
+            // Category links
+            const categoryLinks = document.querySelectorAll('.categories-list a, .tags-widget a');
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const categoryName = this.textContent;
+                    alert(`سيتم عرض جميع المقالات في تصنيف: ${categoryName}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
