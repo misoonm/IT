@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع تعليم تقنية المعلومات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f1f5f9;
+            --accent: #e11d48;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 50%;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            padding: 12px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .user-actions a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .main-nav {
+            background-color: var(--secondary);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            position: relative;
+        }
+        
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        .main-nav .active a {
+            background-color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c3163d;
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Courses Section */
+        .courses {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .course-img {
+            height: 180px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-category {
+            display: inline-block;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .course-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .course-meta i {
+            margin-left: 5px;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-card h3 i {
+            color: var(--primary);
+        }
+        
+        .sub-categories {
+            list-style: none;
+        }
+        
+        .sub-categories li {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+        
+        .sub-categories li:last-child {
+            border-bottom: none;
+        }
+        
+        .sub-categories li a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sub-categories li a i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .sub-categories li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Blog Section */
+        .blog {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .blog-img {
+            height: 180px;
+            background-color: var(--warning);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-excerpt {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .search-bar {
+                width: 40%;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+            }
+            
+            .main-nav li {
+                flex: 1 0 50%;
+            }
+            
+            .main-nav a {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .main-nav li {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تعل<span>يم</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث عن دورة أو مقال...">
+                    <button><i class="fas fa-search"></i> بحث</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> تسجيل الدخول</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i> السلة</a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="#"><i class="fas fa-graduation-cap"></i> الدورات التدريبية</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> المقالات والمدونة</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> الأدوات والموارد</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> مجتمع المتعلمين</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                    <li><a href="#"><i class="fas fa-user-circle"></i> حسابي</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>ارتقِ بمهاراتك التقنية إلى المستوى التالي</h2>
+            <p>انضم إلى مجتمعنا التعليمي واحصل على أفضل الدورات والمقالات في مجالات تكنولوجيا المعلومات المتنوعة، من المبتدئين إلى المحترفين.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">اكتشف الدورات الآن</a>
+                <a href="#" class="btn btn-outline">تصفح المقالات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا تختارنا؟</h2>
+                <p>نقدم لكم تجربة تعليمية استثنائية تجمع بين الجودة والمرونة والدعم المستمر</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>مدربون خبراء</h3>
+                    <p>تعلم من أفضل الخبراء في المجال التقني مع سنوات من الخبرة العملية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>محتوى متجدد</h3>
+                    <p>دورات ومقالات محدثة باستمرار لتواكب أحدث التطورات التقنية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم فني متكامل</h3>
+                    <p>فريق دعم فني متاح لمساعدتك في أي استفسار أو مشكلة تواجهك</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>شهادات معتمدة</h3>
+                    <p>احصل على شهادات إكمال معترف بها في سوق العمل عند انتهائك من الدورات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>أحدث الدورات التدريبية</h2>
+                <p>اكتشف دوراتنا الأكثر طلباً في مختلف مجالات تكنولوجيا المعلومات</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-img">تطوير الويب</div>
+                    <div class="course-content">
+                        <span class="course-category">برمجة وتطوير الويب</span>
+                        <h3 class="course-title">دورة تطوير الويب المتكامل باستخدام React وNode.js</h3>
+                        <p>تعلم بناء تطبيقات ويب كاملة من الصفر إلى الإحتراف</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 40 ساعة</span>
+                            <span><i class="fas fa-user-graduate"></i> 1,200+</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-img">الأمن السيبراني</div>
+                    <div class="course-content">
+                        <span class="course-category">أمن المعلومات</span>
+                        <h3 class="course-title">دورة الأمن السيبراني واختبار الاختراق الأخلاقي</h3>
+                        <p>اكتساب مهارات حماية الأنظمة والشبكات من الهجمات الإلكترونية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 35 ساعة</span>
+                            <span><i class="fas fa-user-graduate"></i> 850+</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-img">الذكاء الاصطناعي</div>
+                    <div class="course-content">
+                        <span class="course-category">الذكاء الاصطناعي</span>
+                        <h3 class="course-title">تعلم الآلة والتعلم العميق باستخدام Python</h3>
+                        <p>بناء نماذج ذكاء اصطناعي متقدمة وحل مشكلات العالم الحقيقي</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 50 ساعة</span>
+                            <span><i class="fas fa-user-graduate"></i> 1,500+</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-img">الحوسبة السحابية</div>
+                    <div class="course-content">
+                        <span class="course-category">الحوسبة السحابية</span>
+                        <h3 class="course-title">احتراف AWS: من البداية إلى المستوى المتقدم</h3>
+                        <p>إدارة وتنظيم البنية التحتية السحابية على منصة أمازون ويب سيرفيسز</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 45 ساعة</span>
+                            <span><i class="fas fa-user-graduate"></i> 980+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-primary">عرض جميع الدورات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>أقسام الدورات التدريبية</h2>
+                <p>استكشف دوراتنا الشاملة في مختلف تخصصات تكنولوجيا المعلومات</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <h3><i class="fas fa-code"></i> برمجة وتطوير الويب</h3>
+                    <ul class="sub-categories">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطوير الويب الأمامي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطوير الويب الخلفي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطبيقات الهاتف المحمول</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> لغات البرمجة الأساسية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <h3><i class="fas fa-shield-alt"></i> أمن المعلومات</h3>
+                    <ul class="sub-categories">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أساسيات الأمن السيبراني</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اختبار الاختراق الأخلاقي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أمن الشبكات والتطبيقات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الاستجابة للحوادث الرقمية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <h3><i class="fas fa-network-wired"></i> إدارة الشبكات</h3>
+                    <ul class="sub-categories">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أساسيات الشبكات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة أنظمة التشغيل</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة الخوادم</a></li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <h3><i class="fas fa-database"></i> قواعد البيانات</h3>
+                    <ul class="sub-categories">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مقدمة إلى SQL</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة قواعد البيانات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> قواعد بيانات NoSQL</a></li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <h3><i class="fas fa-brain"></i> الذكاء الاصطناعي</h3>
+                    <ul class="sub-categories">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تعلم الآلة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> التعلم العميق</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> معالجة اللغات الطبيعية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <h3><i class="fas fa-cloud"></i> الحوسبة السحابية</h3>
+                    <ul class="sub-categories">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مقدمة للحوسبة السحابية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> نشر التطبيقات على السحابة</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <div class="section-title">
+                <h2>أحدث المقالات</h2>
+                <p>ابقَ على اطلاع بأحدث الأخبار والتطورات في عالم التكنولوجيا</p>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">أحدث تقنيات الذكاء الاصطناعي</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 15 يونيو 2023</span>
+                            <span><i class="far fa-comment"></i> 24 تعليق</span>
+                        </div>
+                        <h3 class="blog-title">مستقبل الذكاء الاصطناعي: أحدث التطورات والتأثير على سوق العمل</h3>
+                        <p class="blog-excerpt">كيف سيغير الذكاء الاصطناعي المستقبل الوظيفي في قطاع التكنولوجيا وما هي المهارات المطلوبة للنجاح في هذا المجال.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">أمن المعلومات</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 8 يونيو 2023</span>
+                            <span><i class="far fa-comment"></i> 18 تعليق</span>
+                        </div>
+                        <h3 class="blog-title">أفضل الممارسات لحماية بياناتك الشخصية في العصر الرقمي</h3>
+                        <p class="blog-excerpt">دليل شامل للحفاظ على خصوصيتك وأمان بياناتك في ظل تزايد التهديدات الإلكترونية والقرصنة.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">تطوير الويب</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 1 يونيو 2023</span>
+                            <span><i class="far fa-comment"></i> 32 تعليق</span>
+                        </div>
+                        <h3 class="blog-title">أطر عمل JavaScript الأكثر طلباً في سوق العمل لعام 2023</h3>
+                        <p class="blog-excerpt">مقارنة شاملة بين React, Angular, Vue.js وأحدث الاتجاهات في تطوير واجهات المستخدم.</p>
+                        <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <div class="footer-about">
+                        <p>نحن منصة تعليمية متخصصة في تقديم دورات ومقالات تقنية عالية الجودة لمساعدة المهتمين بمجال تكنولوجيا المعلومات على تطوير مهاراتهم والارتقاء بمستواهم المهني.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> المقالات والمدونة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأدوات والموارد</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مجتمع المتعلمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>أقسام الدورات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> برمجة وتطوير الويب</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أمن المعلومات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة الشبكات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الذكاء الاصطناعي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الحوسبة السحابية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات قانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع تعليم تقنية المعلومات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to course cards on hover
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            courseCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Simple search functionality
+            const searchBtn = document.querySelector('.search-bar button');
+            searchBtn.addEventListener('click', function() {
+                const searchTerm = document.querySelector('.search-bar input').value;
+                if (searchTerm.trim() !== '') {
+                    alert(`سيتم البحث عن: ${searchTerm}`);
+                    // In a real implementation, you would redirect to search results page
+                }
+            });
+        });
+    </script>
+</body>
+</html>
