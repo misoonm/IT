@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدورات التدريبية - موقع تعليم تقنية المعلومات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f1f5f9;
+            --accent: #e11d48;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 50%;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .user-actions a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main-nav {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            position: relative;
+        }
+        
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        .main-nav .active a {
+            background-color: var(--primary);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown a {
+            color: var(--secondary);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Courses Page */
+        .courses-page {
+            padding: 60px 0;
+        }
+        
+        .courses-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+        
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .filter-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .filter-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-title i {
+            color: var(--primary);
+        }
+        
+        .filter-options {
+            list-style: none;
+        }
+        
+        .filter-option {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-option input {
+            margin-left: 10px;
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-option label:hover {
+            color: var(--primary);
+        }
+        
+        .filter-reset {
+            width: 100%;
+            margin-top: 20px;
+            background-color: var(--light);
+            color: var(--secondary);
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-reset:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Courses List */
+        .courses-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .courses-count {
+            font-size: 18px;
+            color: var(--gray);
+        }
+        
+        .sort-options select {
+            padding: 8px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-img {
+            height: 160px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-category {
+            display: inline-block;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .course-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .course-description {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+            height: 65px;
+            overflow: hidden;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .course-meta i {
+            margin-left: 5px;
+        }
+        
+        .rating {
+            color: var(--warning);
+        }
+        
+        .course-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        .course-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+        
+        .pagination a, .pagination span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--secondary);
+            background-color: white;
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .pagination a:hover, .pagination .active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links-footer a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .courses-list-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تعل<span>يم</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث عن دورة...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> حسابي</a>
+                    <a href="#">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-count">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li class="nav-item active">
+                        <a href="#"><i class="fas fa-graduation-cap"></i> الدورات التدريبية</a>
+                        <div class="dropdown">
+                            <a href="#"><i class="fas fa-code"></i> برمجة وتطوير الويب</a>
+                            <a href="#"><i class="fas fa-shield-alt"></i> أمن المعلومات</a>
+                            <a href="#"><i class="fas fa-network-wired"></i> إدارة الشبكات</a>
+                            <a href="#"><i class="fas fa-database"></i> قواعد البيانات</a>
+                            <a href="#"><i class="fas fa-brain"></i> الذكاء الاصطناعي</a>
+                            <a href="#"><i class="fas fa-cloud"></i> الحوسبة السحابية</a>
+                        </div>
+                    </li>
+                    <li><a href="#"><i class="fas fa-blog"></i> المقالات والمدونة</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> الأدوات والموارد</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> مجتمع المتعلمين</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>الدورات التدريبية</h1>
+                <p>اكتشف مجموعة واسعة من الدورات التدريبية في مختلف مجالات تكنولوجيا المعلومات لتنمية مهاراتك وتطوير مسارك المهني</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Page -->
+    <section class="courses-page">
+        <div class="container">
+            <div class="courses-container">
+                <!-- Filters Sidebar -->
+                <div class="filters-sidebar">
+                    <div class="filter-section">
+                        <h3 class="filter-title"><i class="fas fa-filter"></i> التصنيفات</h3>
+                        <ul class="filter-options">
+                            <li class="filter-option">
+                                <input type="checkbox" id="web-dev" checked>
+                                <label for="web-dev">برمجة وتطوير الويب</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="cyber-security">
+                                <label for="cyber-security">أمن المعلومات والأمن السيبراني</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="networking">
+                                <label for="networking">إدارة الشبكات والأنظمة</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="databases">
+                                <label for="databases">قواعد البيانات</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="ai">
+                                <label for="ai">الذكاء الاصطناعي وتعلم الآلة</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="cloud">
+                                <label for="cloud">الحوسبة السحابية</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="data">
+                                <label for="data">تحليل البيانات وذكاء الأعمال</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="project">
+                                <label for="project">إدارة مشاريع تكنولوجيا المعلومات</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3 class="filter-title"><i class="fas fa-tags"></i> المستوى</h3>
+                        <ul class="filter-options">
+                            <li class="filter-option">
+                                <input type="checkbox" id="beginner" checked>
+                                <label for="beginner">مبتدئ</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="intermediate">
+                                <label for="intermediate">متوسط</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="advanced">
+                                <label for="advanced">متقدم</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3 class="filter-title"><i class="fas fa-dollar-sign"></i> السعر</h3>
+                        <ul class="filter-options">
+                            <li class="filter-option">
+                                <input type="checkbox" id="free">
+                                <label for="free">مجانية</label>
+                            </li>
+                            <li class="filter-option">
+                                <input type="checkbox" id="paid">
+                                <label for="paid">مدفوعة</label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <button class="filter-reset">
+                        <i class="fas fa-sync-alt"></i> إعادة تعيين الفلاتر
+                    </button>
+                </div>
+                
+                <!-- Courses List -->
+                <div class="courses-list">
+                    <div class="courses-list-header">
+                        <div class="courses-count">عرض 24 من 128 دورة</div>
+                        <div class="sort-options">
+                            <select>
+                                <option>الأكثر شعبية</option>
+                                <option>الأحدث</option>
+                                <option>الأعلى تقييماً</option>
+                                <option>الأقل سعراً</option>
+                                <option>الأعلى سعراً</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="courses-grid">
+                        <!-- Course 1 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                <div class="course-badge">الأكثر مبيعاً</div>
+                                تطوير الويب
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">برمجة وتطوير الويب</span>
+                                <h3 class="course-title">دورة تطوير الويب المتكامل باستخدام React وNode.js</h3>
+                                <p class="course-description">تعلم بناء تطبيقات ويب كاملة من الصفر إلى الإحتراف باستخدام أحدث التقنيات</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 40 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.8
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">249 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 2 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                <div class="course-badge">جديد</div>
+                                الأمن السيبراني
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">أمن المعلومات</span>
+                                <h3 class="course-title">دورة الأمن السيبراني واختبار الاختراق الأخلاقي</h3>
+                                <p class="course-description">اكتساب مهارات حماية الأنظمة والشبكات من الهجمات الإلكترونية</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 35 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.9
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">199 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 3 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                الذكاء الاصطناعي
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">الذكاء الاصطناعي</span>
+                                <h3 class="course-title">تعلم الآلة والتعلم العميق باستخدام Python</h3>
+                                <p class="course-description">بناء نماذج ذكاء اصطناعي متقدمة وحل مشكلات العالم الحقيقي</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 50 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.7
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">299 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 4 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                <div class="course-badge">مجاني</div>
+                                الحوسبة السحابية
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">الحوسبة السحابية</span>
+                                <h3 class="course-title">مقدمة إلى الحوسبة السحابية مع AWS</h3>
+                                <p class="course-description">أساسيات الحوسبة السحابية وإدارة الخدمات على منصة أمازون ويب سيرفيسز</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 20 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.6
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">مجاناً</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 5 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                تطوير الجوال
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">برمجة وتطوير الويب</span>
+                                <h3 class="course-title">تطوير تطبيقات الهاتف باستخدام Flutter</h3>
+                                <p class="course-description">تعلم بناء تطبيقات متعددة المنصات باستخدام Flutter وDart</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 45 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.8
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">229 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 6 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                قواعد البيانات
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">قواعد البيانات</span>
+                                <h3 class="course-title">إدارة قواعد البيانات المتقدمة مع MySQL وMongoDB</h3>
+                                <p class="course-description">تصميم وإدارة قواعد البيانات العلائقية وغير العلائقية</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 30 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.5
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">179 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 7 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                <div class="course-badge">الأكثر تقييماً</div>
+                                تحليل البيانات
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">تحليل البيانات</span>
+                                <h3 class="course-title">تحليل البيانات باستخدام Python وPandas</h3>
+                                <p class="course-description">استخراج الرؤى القيمة من البيانات باستخدام مكتبات بايثون المتقدمة</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 35 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.9
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">259 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Course 8 -->
+                        <div class="course-card">
+                            <div class="course-img">
+                                إدارة المشاريع
+                            </div>
+                            <div class="course-content">
+                                <span class="course-category">إدارة المشاريع</span>
+                                <h3 class="course-title">إدارة مشاريع تكنولوجيا المعلومات باستخدام منهجية Agile</h3>
+                                <p class="course-description">تعلم إدارة المشاريع التقنية باستخدام منهجيات Agile وScrum</p>
+                                
+                                <div class="course-meta">
+                                    <span><i class="far fa-clock"></i> 25 ساعة</span>
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i> 4.7
+                                    </span>
+                                </div>
+                                
+                                <div class="course-price">199 ر.س</div>
+                                
+                                <div class="course-actions">
+                                    <button class="btn btn-primary">اشترك الآن</button>
+                                    <button class="btn btn-outline">التفاصيل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#"><i class="fas fa-chevron-right"></i></a>
+                        <span class="active">1</span>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                        <a href="#">12</a>
+                        <a href="#"><i class="fas fa-chevron-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <div class="footer-about">
+                        <p>نحن منصة تعليمية متخصصة في تقديم دورات ومقالات تقنية عالية الجودة لمساعدة المهتمين بمجال تكنولوجيا المعلومات على تطوير مهاراتهم والارتقاء بمستواهم المهني.</p>
+                        <div class="social-links-footer">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> المقالات والمدونة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأدوات والموارد</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مجتمع المتعلمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>أقسام الدورات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> برمجة وتطوير الويب</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أمن المعلومات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة الشبكات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الذكاء الاصطناعي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الحوسبة السحابية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات قانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع تعليم تقنية المعلومات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to course cards on hover
+            const courseCards = document.querySelectorAll('.course-card');
+            
+            courseCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            
+            // Filter reset button
+            const filterReset = document.querySelector('.filter-reset');
+            filterReset.addEventListener('click', function() {
+                const checkboxes = document.querySelectorAll('.filter-option input');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                // Check the first category by default
+                document.getElementById('web-dev').checked = true;
+            });
+            
+            // Add to cart buttons
+            const addToCartButtons = document.querySelectorAll('.btn-primary');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const courseCard = this.closest('.course-card');
+                    const courseTitle = courseCard.querySelector('.course-title').textContent;
+                    
+                    // Update cart count
+                    const cartCount = document.querySelector('.cart-count');
+                    cartCount.textContent = parseInt(cartCount.textContent) + 1;
+                    
+                    // Show success message
+                    alert(`تمت إضافة "${courseTitle}" إلى سلة التسوق`);
+                });
+            });
+            
+            // Course details buttons
+            const detailsButtons = document.querySelectorAll('.btn-outline');
+            detailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const courseCard = this.closest('.course-card');
+                    const courseTitle = courseCard.querySelector('.course-title').textContent;
+                    alert(`سيتم توجيهك إلى صفحة تفاصيل الدورة: "${courseTitle}"`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
