@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجتمع المتعلمين | اسم موقعك</title>
+    <style>
+        /* --- CSS Resets & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+            color: #333;
+            direction: rtl; /* للغة العربية */
+            text-align: right; /* للمحاذاة لليمين */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .primary-btn {
+            background-color: #28a745;
+        }
+
+        .primary-btn:hover {
+            background-color: #218838;
+        }
+
+        /* --- Header --- */
+        .main-header {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header h1 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        .main-nav a {
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: #007bff;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #007bff;
+        }
+
+        .notification-count {
+            background-color: #dc3545;
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 7px;
+            border-radius: 50%;
+            position: relative;
+            top: -8px;
+            right: 5px;
+        }
+
+        /* --- Community Content Sections --- */
+        .community-content {
+            padding-top: 30px;
+            padding-bottom: 50px;
+        }
+
+        .community-section {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            text-align: right;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        /* Forum Categories */
+        .forum-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .forum-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .forum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .forum-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .forum-card p {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Latest Posts */
+        .latest-posts .post-item {
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .latest-posts .post-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .post-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .post-item h4 a {
+            color: #007bff;
+        }
+
+        .post-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .post-item .post-date {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .create-post-btn {
+            margin-top: 20px;
+            width: auto; /* override default button width if needed */
+        }
+
+        /* User Profile Section */
+        .user-profile-section .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007bff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-header h3 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .profile-details h4 {
+            font-size: 1.3rem;
+            color: #007bff;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        #profile-courses li {
+            background-color: #f0f8ff;
+            border: 1px solid #e0f0ff;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-status {
+            background-color: #28a745;
+            color: white;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 15px;
+        }
+
+        .course-status.inactive {
+            background-color: #6c757d;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background-color: #ffc107;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .user-activities .activity-item {
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-activities .activity-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .activity-item p {
+            margin-bottom: 5px;
+        }
+
+        .activity-item .activity-date {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* FAQ & Support */
+        .faq-accordion .accordion-item {
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+
+        .accordion-header {
+            background-color: #f7f7f7;
+            color: #333;
+            padding: 15px 20px;
+            width: 100%;
+            text-align: right;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #e9e9e9;
+        }
+
+        .accordion-content {
+            padding: 15px 20px;
+            background-color: #fff;
+            border-top: none;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px; /* Adjust as needed */
+            padding: 15px 20px;
+        }
+
+        /* Messages */
+        .message-list .message-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-bottom: 1px dashed #eee;
+            margin-bottom: 10px;
+            background-color: #fdfdfd;
+            border-radius: 5px;
+        }
+
+        .message-list .message-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .message-sender {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 100px;
+            font-weight: bold;
+        }
+
+        .sender-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .message-preview {
+            flex-grow: 1;
+            color: #555;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-date {
+            font-size: 0.85rem;
+            color: #999;
+            min-width: 80px;
+            text-align: left; /* للحفاظ على التواريخ في اليسار */
+        }
+
+        .view-message-btn {
+            padding: 5px 10px;
+            font-size: 0.85rem;
+        }
+
+        /* --- Modals (Pop-ups) --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%; /* Could be responsive */
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: left; /* ليكون على اليسار في RTL */
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            left: 20px;
+            top: 15px;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #007bff;
+            text-align: right;
+        }
+
+        .modal-content form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .modal-content form input[type="text"],
+        .modal-content form select,
+        .modal-content form textarea,
+        .modal-content form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Ensure padding doesn't affect width */
+        }
+
+        .modal-content form textarea {
+            resize: vertical;
+        }
+
+        .modal-content form button {
+            width: auto;
+            display: block; /* لجعل الزر يأخذ سطرًا جديدًا */
+            margin-top: 20px;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .main-footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* للسماح بالالتفاف على الشاشات الصغيرة */
+        }
+
+        .footer-nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            opacity: 1;
+        }
+
+        /* --- Utility Classes --- */
+        .hidden {
+            display: none !important;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .user-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .profile-avatar {
+                margin-bottom: 15px;
+            }
+
+            .message-list .message-item {
+                flex-wrap: wrap;
+                text-align: right;
+            }
+
+            .message-sender {
+                width: 100%;
+                justify-content: flex-end; /* لليمين */
+            }
+            .message-date {
+                margin-right: auto; /* يدفع التاريخ لليمين إذا كان هناك مساحة */
+            }
+
+            .forum-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .main-footer .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <h1>مجتمع المتعلمين</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#forums">المنتديات</a></li>
+                    <li><a href="#profile">ملفي الشخصي</a></li>
+                    <li><a href="#faq">مساعدة & دعم</a></li>
+                    <li><a href="#messages">الرسائل</a> <span class="notification-count" id="message-count">0</span></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <span id="username">مرحباً، الزائر!</span>
+                <img src="https://via.placeholder.com/40" alt="صورة الملف الشخصي" class="user-avatar" id="user-avatar">
+                <button id="logout-btn">تسجيل الخروج</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container community-content">
+        <section id="forums" class="community-section">
+            <h2 class="section-title">المنتديات الرئيسية</h2>
+            <div class="forum-categories">
+                <div class="forum-card">
+                    <h3>منتدى الدورات العامة</h3>
+                    <p>مناقشات حول جميع الدورات والمواد التعليمية.</p>
+                    <a href="forum-category.html?id=1" class="btn">عرض المنتدى</a>
+                </div>
+                <div class="forum-card">
+                    <h3>المساعدة والدعم الفني</h3>
+                    <p>للمشاكل التقنية والأسئلة الشائعة حول الموقع.</p>
+                    <a href="forum-category.html?id=2" class="btn">عرض المنتدى</a>
+                </div>
+                </div>
+
+            <h3 class="section-subtitle">آخر المشاركات</h3>
+            <div class="latest-posts" id="latest-posts">
+                <div class="post-item">
+                    <h4><a href="#">سؤال حول الوحدة 3 في دورة البرمجة</a></h4>
+                    <p>بواسطة: **محمد** في **منتدى البرمجة** - <span class="post-date">منذ 10 دقائق</span></p>
+                    <p>لدي مشكلة في فهم مفهوم الـ closures، هل يمكن لأحد المساعدة؟</p>
+                </div>
+                <div class="post-item">
+                    <h4><a href="#">نصائح لتعلم اللغة الإنجليزية بسرعة</a></h4>
+                    <p>بواسطة: **فاطمة** في **منتدى اللغات** - <span class="post-date">منذ ساعة</span></p>
+                    <p>أشارككم بعض النصائح التي ساعدتني في تحسين لغتي الإنجليزية...</p>
+                </div>
+            </div>
+            <button class="btn primary-btn create-post-btn">إنشاء مشاركة جديدة</button>
+        </section>
+
+        <section id="profile" class="community-section user-profile-section hidden">
+            <h2 class="section-title">ملفي الشخصي</h2>
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/150" alt="صورة الملف الشخصي" class="profile-avatar" id="profile-user-avatar">
+                <div>
+                    <h3 id="profile-username">اسم المستخدم</h3>
+                    <p id="profile-bio">هنا تضع نبذة مختصرة عنك وعن اهتماماتك التعليمية.</p>
+                    <p>البريد الإلكتروني: <span id="profile-email">user@example.com</span></p>
+                    <button class="btn edit-profile-btn">تعديل الملف الشخصي</button>
+                </div>
+            </div>
+            <div class="profile-details">
+                <h4>الدورات المسجل بها</h4>
+                <ul id="profile-courses">
+                    <li>دورة برمجة الويب المتقدمة <span class="course-status">(جاري)</span></li>
+                    <li>أساسيات علوم البيانات <span class="course-status">(مكتملة)</span></li>
+                </ul>
+                <h4>شارات الإنجاز</h4>
+                <div class="badges" id="profile-badges">
+                    <span class="badge">المساهم النشط</span>
+                    <span class="badge">خبير برمجة</span>
+                </div>
+                <h4>نشاطاتي</h4>
+                <div class="user-activities" id="user-activities">
+                    <div class="activity-item">
+                        <p>نشرت موضوع: <a href="#">أفضل مصادر لتعلم ReactJS</a></p>
+                        <span class="activity-date">2024-05-15</span>
+                    </div>
+                    <div class="activity-item">
+                        <p>ردت على: <a href="#">مشكلة في ربط قاعدة البيانات</a></p>
+                        <span class="activity-date">2024-05-10</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="community-section hidden">
+            <h2 class="section-title">مساعدة & دعم</h2>
+            <div class="faq-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">كيف يمكنني إنشاء حساب؟</button>
+                    <div class="accordion-content">
+                        <p>لإنشاء حساب، يرجى زيارة صفحة التسجيل وملء البيانات المطلوبة.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">كيف أطرح سؤال في المنتدى؟</button>
+                    <div class="accordion-content">
+                        <p>انتقل إلى قسم المنتديات، اختر الفئة المناسبة، ثم اضغط على زر "إنشاء مشاركة جديدة".</p>
+                    </div>
+                </div>
+                </div>
+            <p>لمزيد من المساعدة، يرجى <a href="#" id="contact-support-btn">التواصل مع الدعم</a>.</p>
+        </section>
+
+        <section id="messages" class="community-section hidden">
+            <h2 class="section-title">رسائلي الخاصة</h2>
+            <div class="message-list" id="message-list">
+                <div class="message-item">
+                    <div class="message-sender">
+                        <img src="https://via.placeholder.com/30" alt="صورة المرسل" class="sender-avatar">
+                        <span>أحمد</span>
+                    </div>
+                    <p class="message-preview">مرحباً! لدي سؤال بخصوص مشروع الدورة...</p>
+                    <span class="message-date">منذ 5 دقائق</span>
+                    <a href="#" class="btn view-message-btn">عرض</a>
+                </div>
+                </div>
+            <button class="btn primary-btn compose-message-btn">إنشاء رسالة جديدة</button>
+        </section>
+
+        <div id="create-post-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3>إنشاء مشاركة جديدة</h3>
+                <form id="new-post-form">
+                    <label for="post-title">عنوان المشاركة:</label>
+                    <input type="text" id="post-title" required>
+                    <label for="post-category">الفئة:</label>
+                    <select id="post-category" required>
+                        <option value="">اختر فئة</option>
+                        <option value="general">عامة</option>
+                        <option value="programming">برمجة</option>
+                        <option value="languages">لغات</option>
+                    </select>
+                    <label for="post-content">محتوى المشاركة:</label>
+                    <textarea id="post-content" rows="10" required></textarea>
+                    <button type="submit" class="btn primary-btn">نشر المشاركة</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="edit-profile-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3>تعديل الملف الشخصي</h3>
+                <form id="edit-profile-form">
+                    <label for="edit-profile-bio">نبذة عني:</label>
+                    <textarea id="edit-profile-bio" rows="5"></textarea>
+                    <label for="edit-profile-avatar">تغيير الصورة الشخصية:</label>
+                    <input type="file" id="edit-profile-avatar" accept="image/*">
+                    <button type="submit" class="btn primary-btn">حفظ التغييرات</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 اسم موقعك. جميع الحقوق محفوظة.</p>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">سياسة الخصوصية</a></li>
+                    <li><a href="#">شروط الاستخدام</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // --- JavaScript Code (Combined) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // A simple client-side routing/tabbing mechanism
+            const navLinks = document.querySelectorAll('.main-nav a');
+            const sections = document.querySelectorAll('.community-section');
+            const userAvatarHeader = document.getElementById('user-avatar');
+            const usernameHeader = document.getElementById('username');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // Modals
+            const createPostModal = document.getElementById('create-post-modal');
+            const createPostBtn = document.querySelector('.create-post-btn');
+            const closeButtons = document.querySelectorAll('.modal .close-button');
+            const editProfileModal = document.getElementById('edit-profile-modal');
+            const editProfileBtn = document.querySelector('.edit-profile-btn');
+
+            // Default user data (This would come from your backend in a real app)
+            const currentUser = {
+                name: "زائر كريم",
+                avatar: "https://via.placeholder.com/40",
+                isLoggedIn: false, // Set to true after actual login
+                bio: "أنا متحمس للتعلم واستكشاف مجالات جديدة في المعرفة.",
+                email: "guest@example.com",
+                courses: [
+                    { name: "مقدمة في البرمجة", status: "جاري" },
+                    { name: "التصميم الجرافيكي للمبتدئين", status: "مكتملة" }
+                ],
+                badges: ["المبتدئ النشط", "المستكشف الرقمي"],
+                activities: [
+                    { type: "post", content: "نشرت موضوع: أفضل طرق لتعلم اللغات الجديدة", date: "2024-06-01" },
+                    { type: "reply", content: "ردت على: سؤال حول الذكاء الاصطناعي", date: "2024-05-28" }
+                ]
+            };
+
+            // --- Function to update UI based on user login status ---
+            function updateHeaderUserInfo(user) {
+                if (user.isLoggedIn) {
+                    usernameHeader.textContent = `مرحباً، ${user.name}!`;
+                    userAvatarHeader.src = user.avatar;
+                    logoutBtn.style.display = 'inline-block';
+                    // Also update profile section if it's visible
+                    document.getElementById('profile-user-avatar').src = user.avatar;
+                    document.getElementById('profile-username').textContent = user.name;
+                    document.getElementById('profile-bio').textContent = user.bio;
+                    document.getElementById('profile-email').textContent = user.email;
+                } else {
+                    usernameHeader.textContent = `مرحباً، الزائر!`;
+                    userAvatarHeader.src = "https://via.placeholder.com/40"; // Default avatar
+                    logoutBtn.style.display = 'none';
+                }
+            }
+
+            // Initialize user info on page load
+            updateHeaderUserInfo(currentUser);
+
+            // --- Navigation/Tab Logic ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    const targetId = link.getAttribute('href').substring(1); // Get section ID
+
+                    // Hide all sections
+                    sections.forEach(section => section.classList.add('hidden'));
+
+                    // Show the target section
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.remove('hidden');
+                        // Specific calls for profile/messages to load data if needed
+                        if (targetId === 'profile') {
+                            loadUserProfile(currentUser); // Load dynamic profile data
+                        } else if (targetId === 'messages') {
+                            loadMessages(); // Load messages
+                        } else if (targetId === 'forums') {
+                            fetchForumPosts(); // Load forum posts
+                        }
+                    }
+
+                    // Optional: Update active link styling
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+
+            // Default to show forums section
+            if (sections.length > 0) {
+                sections[0].classList.remove('hidden');
+                navLinks[0].classList.add('active');
+                fetchForumPosts(); // Load initial forum data
+            }
+
+            // --- Modal Logic ---
+            createPostBtn.addEventListener('click', () => {
+                createPostModal.style.display = 'flex';
+            });
+
+            editProfileBtn.addEventListener('click', () => {
+                // Pre-fill form with current user data (replace with actual data from backend)
+                document.getElementById('edit-profile-bio').value = currentUser.bio;
+                editProfileModal.style.display = 'flex';
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    button.closest('.modal').style.display = 'none';
+                });
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === createPostModal) {
+                    createPostModal.style.display = 'none';
+                }
+                if (event.target === editProfileModal) {
+                    editProfileModal.style.display = 'none';
+                }
+            });
+
+            // --- Form Submissions (placeholders) ---
+            const newPostForm = document.getElementById('new-post-form');
+            newPostForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const title = document.getElementById('post-title').value;
+                const category = document.getElementById('post-category').value;
+                const content = document.getElementById('post-content').value;
+
+                console.log('New Post:', { title, category, content });
+                alert('تم إرسال المشاركة (هذه وظيفة وهمية تحتاج إلى الواجهة الخلفية)');
+                createPostModal.style.display = 'none';
+                newPostForm.reset();
+                // In a real app, you'd send this to your backend API
+            });
+
+            const editProfileForm = document.getElementById('edit-profile-form');
+            editProfileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newBio = document.getElementById('edit-profile-bio').value;
+                const newAvatarFile = document.getElementById('edit-profile-avatar').files[0];
+
+                console.log('Update Profile:', { bio: newBio, avatar: newAvatarFile ? newAvatarFile.name : 'No new avatar' });
+                // Update currentUser object (temporary for demo)
+                currentUser.bio = newBio;
+                if (newAvatarFile) {
+                    // In a real app, upload file and get URL
+                    currentUser.avatar = URL.createObjectURL(newAvatarFile);
+                }
+                updateHeaderUserInfo(currentUser); // Update header and profile section
+                alert('تم حفظ تغييرات الملف الشخصي (هذه وظيفة وهمية)');
+                editProfileModal.style.display = 'none';
+                editProfileForm.reset();
+                // In a real app, you'd send this to your backend API
+            });
+
+            // --- FAQ Accordion Logic ---
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.closest('.accordion-item');
+                    item.classList.toggle('active');
+                });
+            });
+
+            // --- Logout Button (placeholder) ---
+            logoutBtn.addEventListener('click', () => {
+                alert('تم تسجيل الخروج (هذه وظيفة وهمية)');
+                currentUser.isLoggedIn = false; // Simulate logout
+                currentUser.name = "زائر كريم";
+                currentUser.avatar = "https://via.placeholder.com/40";
+                updateHeaderUserInfo(currentUser);
+                // In a real app, you'd clear session/token and redirect to login page
+            });
+
+            // Simulate login for demonstration (remove in production)
+            setTimeout(() => {
+                currentUser.isLoggedIn = true;
+                currentUser.name = "سارة أحمد";
+                currentUser.avatar = "https://via.placeholder.com/40/FF5733/FFFFFF?text=SA";
+                currentUser.bio = "متحمسة لتعلم البرمجة وتطوير الويب.";
+                currentUser.email = "sara.ahmed@example.com";
+                updateHeaderUserInfo(currentUser);
+                // Update messages count
+                const messageCountSpan = document.getElementById('message-count');
+                messageCountSpan.textContent = "3"; // Simulate 3 new messages
+            }, 1000); // Simulate data loading
+
+            // --- Dummy functions for dynamic content (would be fetched from backend) ---
+            function loadUserProfile(user) {
+                // This function would typically fetch user data from an API
+                // For demo, we use the `currentUser` object
+
+                const profileUsername = document.getElementById('profile-username');
+                const profileBio = document.getElementById('profile-bio');
+                const profileEmail = document.getElementById('profile-email');
+                const profileAvatar = document.getElementById('profile-user-avatar');
+                const profileCoursesList = document.getElementById('profile-courses');
+                const profileBadgesDiv = document.getElementById('profile-badges');
+                const userActivitiesDiv = document.getElementById('user-activities');
+
+                profileUsername.textContent = user.name;
+                profileBio.textContent = user.bio;
+                profileEmail.textContent = user.email;
+                profileAvatar.src = user.avatar;
+
+                // Clear previous content
+                profileCoursesList.innerHTML = '';
+                profileBadgesDiv.innerHTML = '';
+                userActivitiesDiv.innerHTML = '';
+
+                // Render courses
+                user.courses.forEach(course => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${course.name} <span class="course-status ${course.status === 'جاري' ? '' : 'inactive'}">${course.status}</span>`;
+                    profileCoursesList.appendChild(li);
+                });
+
+                // Render badges
+                user.badges.forEach(badgeText => {
+                    const span = document.createElement('span');
+                    span.classList.add('badge');
+                    span.textContent = badgeText;
+                    profileBadgesDiv.appendChild(span);
+                });
+
+                // Render activities
+                user.activities.forEach(activity => {
+                    const div = document.createElement('div');
+                    div.classList.add('activity-item');
+                    let contentHtml = '';
+                    if (activity.type === 'post') {
+                        contentHtml = `<p>نشرت موضوع: <a href="#">${activity.content.replace('نشرت موضوع: ', '')}</a></p>`;
+                    } else if (activity.type === 'reply') {
+                        contentHtml = `<p>ردت على: <a href="#">${activity.content.replace('ردت على: ', '')}</a></p>`;
+                    }
+                    div.innerHTML = `${contentHtml}<span class="activity-date">${activity.date}</span>`;
+                    userActivitiesDiv.appendChild(div);
+                });
+            }
+
+            function loadMessages() {
+                // This would fetch messages from your backend API
+                const messageList = document.getElementById('message-list');
+                messageList.innerHTML = ''; // Clear existing messages
+
+                const dummyMessages = [
+                    { sender: "علي", avatar: "https://via.placeholder.com/30/3366FF/FFFFFF?text=AL", preview: "مرحباً! هل أنت متاح لمناقشة المشروع؟", date: "منذ 10 دقائق" },
+                    { sender: "مريم", avatar: "https://via.placeholder.com/30/FF33FF/FFFFFF?text=MR", preview: "لقد أرسلت لك الملاحظات على التقرير.", date: "منذ ساعة" },
+                    { sender: "دعم الموقع", avatar: "https://via.placeholder.com/30/66BB6A/FFFFFF?text=SD", preview: "شكرًا لتواصلك، طلب الدعم الخاص بك قيد المعالجة.", date: "أمس" }
+                ];
+
+                dummyMessages.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.classList.add('message-item');
+                    div.innerHTML = `
+                        <div class="message-sender">
+                            <img src="${msg.avatar}" alt="صورة المرسل" class="sender-avatar">
+                            <span>${msg.sender}</span>
+                        </div>
+                        <p class="message-preview">${msg.preview}</p>
+                        <span class="message-date">${msg.date}</span>
+                        <a href="#" class="btn view-message-btn">عرض</a>
+                    `;
+                    messageList.appendChild(div);
+                });
+            }
+
+            // Forum specific logic (originally in forum.js)
+            function fetchForumPosts(categoryId = null) {
+                console.log(`Fetching posts for category: ${categoryId || 'All'}`);
+                // In a real application, you'd make an API call here:
+                // fetch(`/api/forums/posts?category=${categoryId}`)
+                //   .then(response => response.json())
+                //   .then(posts => {
+                //     // Render posts to the DOM
+                //     console.log('Posts loaded:', posts);
+                //   })
+                //   .catch(error => console.error('Error fetching forum posts:', error));
+
+                // For demonstration, let's just update latest posts area with dummy data
+                const latestPostsDiv = document.getElementById('latest-posts');
+                if (latestPostsDiv) {
+                    latestPostsDiv.innerHTML = `
+                        <div class="post-item">
+                            <h4><a href="#">سؤال حول تطوير الواجهة الأمامية</a></h4>
+                            <p>بواسطة: <strong>أحمد</strong> في <strong>منتدى تطوير الويب</strong> - <span class="post-date">منذ 30 دقيقة</span></p>
+                            <p>ما هي أفضل الممارسات لتنظيم كود CSS في مشاريع كبيرة؟</p>
+                        </div>
+                        <div class="post-item">
+                            <h4><a href="#">شرح مبسط لمفهوم الخوارزميات</a></h4>
+                            <p>بواسطة: <strong>ليلى</strong> في <strong>منتدى علوم الحاسوب</strong> - <span class="post-date">منذ ساعتين</span></p>
+                            <p>أحاول تبسيط الخوارزميات للمبتدئين، إليكم بعض الأمثلة...</p>
+                        </div>
+                        <div class="post-item">
+                            <h4><a href="#">ورشة عمل مجانية لتعلم بايثون</a></h4>
+                            <p>بواسطة: <strong>فريق الموقع</strong> في <strong>الإعلانات</strong> - <span class="post-date">بالأمس</span></p>
+                            <p>سوف نستضيف ورشة عمل تفاعلية عبر الإنترنت يوم السبت القادم.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Profile specific logic (originally in profile.js)
+            const editProfileAvatarInput = document.getElementById('edit-profile-avatar');
+            if (editProfileAvatarInput) {
+                editProfileAvatarInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        console.log('New profile picture selected:', file.name);
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            document.getElementById('profile-user-avatar').src = event.target.result;
+                            document.getElementById('user-avatar').src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Notifications specific logic (originally in notifications.js)
+            const messageCountSpan = document.getElementById('message-count');
+
+            function fetchNotificationCount() {
+                // This would fetch notification count from your backend API
+                // For demo:
+                // messageCountSpan.textContent = "2"; // Simulate 2 new messages
+                // messageCountSpan.style.display = 'inline-block';
+            }
+
+            fetchNotificationCount(); // Initial fetch
+        });
+    </script>
+</body>
+</html>
