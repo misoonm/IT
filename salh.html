@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سلة التسوق - موقع تعليم تقنية المعلومات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f1f5f9;
+            --accent: #e11d48;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 50%;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .user-actions a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main-nav {
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            position: relative;
+        }
+        
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover {
+            background-color: var(--primary);
+        }
+        
+        .main-nav .active a {
+            background-color: var(--primary);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown a {
+            color: var(--secondary);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        /* Shopping Cart Page */
+        .cart-page {
+            padding: 80px 0;
+        }
+        
+        .page-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .page-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .page-description {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-summary {
+                order: -1;
+            }
+        }
+        
+        .cart-items {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-img {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin-left: 20px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+        
+        .remove-item {
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .empty-cart i {
+            font-size: 64px;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .empty-cart p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .cart-summary {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            height: fit-content;
+        }
+        
+        .cart-summary h3 {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-item.total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .promo-code {
+            margin: 20px 0;
+        }
+        
+        .promo-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .promo-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .continue-shopping {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links-footer a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-img {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تعل<span>يم</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="ابحث عن دورة أو مقال...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#" id="userAccount">
+                        <i class="fas fa-user"></i> 
+                        <span id="userName">حسابي</span>
+                    </a>
+                    <a href="#" id="cartButton">
+                        <i class="fas fa-shopping-cart"></i> السلة
+                        <span class="cart-count" id="cartCount">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li class="nav-item">
+                        <a href="#"><i class="fas fa-graduation-cap"></i> الدورات التدريبية</a>
+                        <div class="dropdown">
+                            <a href="#"><i class="fas fa-code"></i> برمجة وتطوير الويب</a>
+                            <a href="#"><i class="fas fa-shield-alt"></i> أمن المعلومات</a>
+                            <a href="#"><i class="fas fa-network-wired"></i> إدارة الشبكات</a>
+                            <a href="#"><i class="fas fa-database"></i> قواعد البيانات</a>
+                            <a href="#"><i class="fas fa-brain"></i> الذكاء الاصطناعي</a>
+                            <a href="#"><i class="fas fa-cloud"></i> الحوسبة السحابية</a>
+                        </div>
+                    </li>
+                    <li><a href="#"><i class="fas fa-blog"></i> المقالات والمدونة</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> الأدوات والموارد</a></li>
+                    <li class="active"><a href="#"><i class="fas fa-shopping-cart"></i> السلة</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Page -->
+    <section class="cart-page">
+        <div class="container">
+            <div class="page-header">
+                <h2 class="page-title">سلة التسوق</h2>
+                <p class="page-description">راجع دوراتك المختارة وأكمل عملية الشراء</p>
+            </div>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            تطوير الويب
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">دورة تطوير الويب المتكامل باستخدام React وNode.js</h3>
+                            <div class="cart-item-price">249 ر.س</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                                <button class="remove-item">
+                                    <i class="fas fa-trash"></i> إزالة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            الأمن السيبراني
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">دورة الأمن السيبراني واختبار الاختراق الأخلاقي</h3>
+                            <div class="cart-item-price">199 ر.س</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                                <button class="remove-item">
+                                    <i class="fas fa-trash"></i> إزالة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            الذكاء الاصطناعي
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-title">تعلم الآلة والتعلم العميق باستخدام Python</h3>
+                            <div class="cart-item-price">299 ر.س</div>
+                            <div class="cart-item-actions">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                                <button class="remove-item">
+                                    <i class="fas fa-trash"></i> إزالة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <h3>ملخص الطلب</h3>
+                    <div class="summary-item">
+                        <span>المجموع الفرعي:</span>
+                        <span id="subtotal">747 ر.س</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>الخصم:</span>
+                        <span id="discount">-50 ر.س</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>الضريبة (15%):</span>
+                        <span id="tax">104.55 ر.س</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>الإجمالي:</span>
+                        <span id="total">801.55 ر.س</span>
+                    </div>
+                    
+                    <div class="promo-code">
+                        <label for="promo">كود الخصم</label>
+                        <div class="promo-input">
+                            <input type="text" id="promo" placeholder="ادخل كود الخصم">
+                            <button class="btn btn-primary">تطبيق</button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary checkout-btn">إتمام الشراء</button>
+                    
+                    <div class="continue-shopping">
+                        <a href="#"><i class="fas fa-arrow-left"></i> متابعة التسوق</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <div class="footer-about">
+                        <p>نحن منصة تعليمية متخصصة في تقديم دورات ومقالات تقنية عالية الجودة لمساعدة المهتمين بمجال تكنولوجيا المعلومات على تطوير مهاراتهم والارتقاء بمستواهم المهني.</p>
+                        <div class="social-links-footer">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> المقالات والمدونة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأدوات والموارد</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مجتمع المتعلمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>أقسام الدورات</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> برمجة وتطوير الويب</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أمن المعلومات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> إدارة الشبكات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الذكاء الاصطناعي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الحوسبة السحابية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات قانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع تعليم تقنية المعلومات</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== وظائف التطبيق ==========
+        
+        // تهيئة التطبيق
+        function initApp() {
+            setupQuantityControls();
+            setupRemoveButtons();
+        }
+
+        // إعداد أزرار التحكم بالكمية
+        function setupQuantityControls() {
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('.quantity-input');
+                    let value = parseInt(input.value);
+                    
+                    if (this.querySelector('.fa-plus')) {
+                        value++;
+                    } else {
+                        if (value > 1) value--;
+                    }
+                    
+                    input.value = value;
+                    updateCartSummary();
+                });
+            });
+        }
+
+        // إعداد أزرار الإزالة
+        function setupRemoveButtons() {
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    cartItem.style.animation = 'fadeOut 0.3s ease';
+                    
+                    setTimeout(() => {
+                        cartItem.remove();
+                        updateCartSummary();
+                        
+                        // التحقق إذا كانت السلة فارغة
+                        if (document.querySelectorAll('.cart-item').length === 0) {
+                            showEmptyCart();
+                        }
+                    }, 300);
+                });
+            });
+        }
+
+        // تحديث ملخص السلة
+        function updateCartSummary() {
+            let subtotal = 0;
+            
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.querySelector('.cart-item-price').textContent);
+                const quantity = parseInt(item.querySelector('.quantity-input').value);
+                subtotal += price * quantity;
+            });
+            
+            // حساب الخصم والضريبة
+            const discount = subtotal > 500 ? 50 : 0;
+            const tax = (subtotal - discount) * 0.15;
+            const total = subtotal - discount + tax;
+            
+            // تحديث القيم
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2) + ' ر.س';
+            document.getElementById('discount').textContent = '-' + discount.toFixed(2) + ' ر.س';
+            document.getElementById('tax').textContent = tax.toFixed(2) + ' ر.س';
+            document.getElementById('total').textContent = total.toFixed(2) + ' ر.س';
+            
+            // تحديث عدد العناصر في السلة
+            const cartCount = document.getElementById('cartCount');
+            const itemCount = document.querySelectorAll('.cart-item').length;
+            cartCount.textContent = itemCount;
+            
+            // تحديث عنوان الصفحة عند إفراغ السلة
+            if (itemCount === 0) {
+                document.querySelector('.page-title').textContent = 'سلة التسوق فارغة';
+            }
+        }
+
+        // عرض حالة السلة الفارغة
+        function showEmptyCart() {
+            const cartItems = document.querySelector('.cart-items');
+            cartItems.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>سلة التسوق فارغة</h3>
+                    <p>لم تقم بإضافة أي دورات إلى سلة التسوق بعد</p>
+                    <a href="#" class="btn btn-primary">تصفح الدورات الآن</a>
+                </div>
+            `;
+        }
+
+        // بدء تشغيل التطبيق
+        initApp();
+    </script>
+</body>
+</html>
