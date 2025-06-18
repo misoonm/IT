@@ -3,1089 +3,1454 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مجتمع المتعلمين | اسم موقعك</title>
+    <title>مجتمع المتعلمين - موقع تعليم تقنية المعلومات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS Resets & Base Styles --- */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --light: #f1f5f9;
+            --accent: #e11d48;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
             line-height: 1.6;
-            background-color: #f4f7f6;
-            color: #333;
-            direction: rtl; /* للغة العربية */
-            text-align: right; /* للمحاذاة لليمين */
+            direction: rtl;
         }
-
+        
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-
-        a:hover {
-            text-decoration: underline;
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
         }
-
-        ul {
-            list-style: none;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        .btn {
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .search-bar {
+            display: flex;
+            width: 50%;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
             cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
         }
-
-        .btn:hover {
-            background-color: #0056b3;
+        
+        .search-bar button:hover {
+            background-color: var(--primary-dark);
         }
-
-        .primary-btn {
-            background-color: #28a745;
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
         }
-
-        .primary-btn:hover {
-            background-color: #218838;
-        }
-
-        /* --- Header --- */
-        .main-header {
-            background-color: #fff;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        
+        .user-actions a {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
         }
-
-        .main-header .container {
+        
+        .user-actions a:hover {
+            color: var(--primary);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
         }
-
-        .main-header h1 {
-            font-size: 1.8rem;
-            color: #333;
+        
+        .main-nav {
+            background-color: var(--secondary);
+            position: relative;
         }
-
+        
         .main-nav ul {
             display: flex;
-            gap: 25px;
+            list-style: none;
         }
-
-        .main-nav a {
-            color: #555;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .main-nav a:hover {
-            color: #007bff;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #007bff;
-        }
-
-        .notification-count {
-            background-color: #dc3545;
-            color: white;
-            font-size: 0.75rem;
-            padding: 3px 7px;
-            border-radius: 50%;
+        
+        .main-nav li {
             position: relative;
-            top: -8px;
-            right: 5px;
         }
-
-        /* --- Community Content Sections --- */
-        .community-content {
-            padding-top: 30px;
-            padding-bottom: 50px;
+        
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
         }
-
-        .community-section {
-            background-color: #fff;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        
+        .main-nav a:hover {
+            background-color: var(--primary);
         }
-
-        .section-title {
-            font-size: 2rem;
-            color: #007bff;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            text-align: right;
+        
+        .main-nav .active a {
+            background-color: var(--primary);
         }
-
-        .section-subtitle {
-            font-size: 1.5rem;
-            color: #555;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            text-align: right;
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
         }
-
-        /* Forum Categories */
-        .forum-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-
-        .forum-card {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        
+        .dropdown a {
+            color: var(--secondary);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--light-gray);
         }
-
-        .forum-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .forum-card h3 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-        }
-
-        .forum-card p {
-            color: #777;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        /* Latest Posts */
-        .latest-posts .post-item {
-            border-bottom: 1px dashed #eee;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-
-        .latest-posts .post-item:last-child {
+        
+        .dropdown a:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
-
-        .post-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+        
+        .dropdown a:hover {
+            background-color: var(--light);
+            color: var(--primary);
         }
-
-        .post-item h4 a {
-            color: #007bff;
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+            text-align: center;
         }
-
-        .post-item p {
-            font-size: 0.9rem;
-            color: #666;
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        .post-item .post-date {
-            font-size: 0.85rem;
-            color: #999;
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
         }
-
-        .create-post-btn {
-            margin-top: 20px;
-            width: auto; /* override default button width if needed */
+        
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        /* User Profile Section */
-        .user-profile-section .profile-header {
-            display: flex;
-            align-items: center;
+        
+        /* Community Page */
+        .community-page {
+            padding: 60px 0;
+        }
+        
+        .community-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
             gap: 30px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
         }
-
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #007bff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        
+        /* Community Content */
+        .community-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
-
-        .profile-header h3 {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 5px;
+        
+        .community-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
         }
-
-        .profile-header p {
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        .profile-details h4 {
-            font-size: 1.3rem;
-            color: #007bff;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-
-        #profile-courses li {
-            background-color: #f0f8ff;
-            border: 1px solid #e0f0ff;
-            padding: 10px 15px;
-            margin-bottom: 8px;
-            border-radius: 5px;
+        
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
         }
-
-        .course-status {
-            background-color: #28a745;
-            color: white;
-            font-size: 0.8rem;
-            padding: 4px 8px;
-            border-radius: 15px;
-        }
-
-        .course-status.inactive {
-            background-color: #6c757d;
-        }
-
-        .badges {
+        
+        .section-title {
+            font-size: 28px;
+            color: var(--secondary);
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             gap: 10px;
-            margin-top: 15px;
         }
-
-        .badge {
-            background-color: #ffc107;
-            color: #333;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
+        
+        .view-all {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
         }
-
-        .user-activities .activity-item {
-            border-bottom: 1px dashed #eee;
-            padding-bottom: 10px;
+        
+        .view-all:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Forum Section */
+        .forum-threads {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .thread-card {
+            display: flex;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--light);
+            transition: var(--transition);
+        }
+        
+        .thread-card:hover {
+            background-color: #e2e8f0;
+            transform: translateX(-5px);
+        }
+        
+        .thread-icon {
+            min-width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-left: 15px;
+        }
+        
+        .thread-content {
+            flex: 1;
+        }
+        
+        .thread-title {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .thread-excerpt {
+            color: var(--gray);
             margin-bottom: 10px;
         }
-
-        .user-activities .activity-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        
+        .thread-meta {
+            display: flex;
+            gap: 15px;
+            color: var(--gray);
+            font-size: 14px;
         }
-
-        .activity-item p {
-            margin-bottom: 5px;
+        
+        .thread-stats {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
-
-        .activity-item .activity-date {
-            font-size: 0.85rem;
-            color: #999;
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 14px;
         }
-
-        /* FAQ & Support */
-        .faq-accordion .accordion-item {
-            margin-bottom: 10px;
-            border: 1px solid #eee;
-            border-radius: 5px;
-        }
-
-        .accordion-header {
-            background-color: #f7f7f7;
-            color: #333;
-            padding: 15px 20px;
-            width: 100%;
-            text-align: right;
+        
+        .new-thread-btn {
+            margin-top: 20px;
+            background-color: var(--primary);
+            color: white;
             border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 1.1rem;
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        .accordion-header:hover {
-            background-color: #e9e9e9;
+        
+        .new-thread-btn:hover {
+            background-color: var(--primary-dark);
         }
-
-        .accordion-content {
-            padding: 15px 20px;
-            background-color: #fff;
-            border-top: none;
+        
+        /* Study Groups */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .group-card {
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            color: white;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
         }
-
-        .accordion-item.active .accordion-content {
-            max-height: 200px; /* Adjust as needed */
-            padding: 15px 20px;
+        
+        .group-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-
-        /* Messages */
-        .message-list .message-item {
+        
+        .group-header {
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 15px;
-            border-bottom: 1px dashed #eee;
-            margin-bottom: 10px;
-            background-color: #fdfdfd;
-            border-radius: 5px;
         }
-
-        .message-list .message-item:last-child {
+        
+        .group-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .group-title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+        
+        .group-topic {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .group-body {
+            padding: 20px;
+        }
+        
+        .group-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .group-members {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .group-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .group-progress {
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: white;
+            width: 65%;
+        }
+        
+        .group-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .join-btn {
+            width: 100%;
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .join-btn:hover {
+            background-color: var(--light);
+        }
+        
+        /* Community Sidebar */
+        .community-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+        }
+        
+        .widget-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+            position: relative;
+        }
+        
+        .widget-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        /* User Profile */
+        .user-profile {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+        
+        .user-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .user-title {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .user-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .profile-link {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--secondary);
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .profile-link:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Active Users */
+        .active-users {
+            list-style: none;
+        }
+        
+        .active-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .active-user:last-child {
             border-bottom: none;
-            margin-bottom: 0;
         }
-
-        .message-sender {
+        
+        .user-small-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--warning), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .user-small-info {
+            flex: 1;
+        }
+        
+        .user-small-name {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .user-small-status {
+            font-size: 12px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-online {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--success);
+        }
+        
+        .start-group-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .start-group-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Community Events */
+        .events-list {
+            list-style: none;
+        }
+        
+        .event-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .event-item:last-child {
+            border-bottom: none;
+        }
+        
+        .event-date {
+            min-width: 60px;
+            height: 60px;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .event-day {
+            font-size: 22px;
+            color: var(--primary);
+        }
+        
+        .event-month {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .event-info {
+            flex: 1;
+        }
+        
+        .event-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .event-time {
+            font-size: 14px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .join-event {
+            color: var(--primary);
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
-            min-width: 100px;
-            font-weight: bold;
         }
-
-        .sender-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
         }
-
-        .message-preview {
-            flex-grow: 1;
-            color: #555;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        
+        .footer-links a i {
+            font-size: 12px;
+            color: var(--primary);
         }
-
-        .message-date {
-            font-size: 0.85rem;
-            color: #999;
-            min-width: 80px;
-            text-align: left; /* للحفاظ على التواريخ في اليسار */
-        }
-
-        .view-message-btn {
-            padding: 5px 10px;
-            font-size: 0.85rem;
-        }
-
-        /* --- Modals (Pop-ups) --- */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 30px;
-            border: 1px solid #888;
-            width: 80%; /* Could be responsive */
-            max-width: 600px;
-            border-radius: 8px;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .close-button {
-            color: #aaa;
-            float: left; /* ليكون على اليسار في RTL */
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            left: 20px;
-            top: 15px;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-content h3 {
+        
+        .footer-about p {
+            color: #cbd5e1;
             margin-bottom: 20px;
-            color: #007bff;
-            text-align: right;
+            line-height: 1.8;
         }
-
-        .modal-content form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        .modal-content form input[type="text"],
-        .modal-content form select,
-        .modal-content form textarea,
-        .modal-content form input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            box-sizing: border-box; /* Ensure padding doesn't affect width */
-        }
-
-        .modal-content form textarea {
-            resize: vertical;
-        }
-
-        .modal-content form button {
-            width: auto;
-            display: block; /* لجعل الزر يأخذ سطرًا جديدًا */
-            margin-top: 20px;
-        }
-
-        /* --- Footer --- */
-        .main-footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .main-footer .container {
+        
+        .social-links-footer {
             display: flex;
-            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .social-links-footer a {
+            display: flex;
             align-items: center;
-            flex-wrap: wrap; /* للسماح بالالتفاف على الشاشات الصغيرة */
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
         }
-
-        .footer-nav ul {
-            display: flex;
-            gap: 20px;
+        
+        .social-links-footer a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
         }
-
-        .footer-nav a {
-            color: #fff;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
         }
-
-        .footer-nav a:hover {
-            opacity: 1;
-        }
-
-        /* --- Utility Classes --- */
-        .hidden {
-            display: none !important;
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .main-header .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .main-nav ul {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-
-            .user-info {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-
-            .profile-avatar {
-                margin-bottom: 15px;
-            }
-
-            .message-list .message-item {
-                flex-wrap: wrap;
-                text-align: right;
-            }
-
-            .message-sender {
-                width: 100%;
-                justify-content: flex-end; /* لليمين */
-            }
-            .message-date {
-                margin-right: auto; /* يدفع التاريخ لليمين إذا كان هناك مساحة */
-            }
-
-            .forum-categories {
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .community-container {
                 grid-template-columns: 1fr;
             }
-
-            .main-footer .container {
+            
+            .community-sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .groups-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .thread-card {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .thread-icon {
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
-    <header class="main-header">
+    <!-- Header -->
+    <header>
         <div class="container">
-            <h1>مجتمع المتعلمين</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#forums">المنتديات</a></li>
-                    <li><a href="#profile">ملفي الشخصي</a></li>
-                    <li><a href="#faq">مساعدة & دعم</a></li>
-                    <li><a href="#messages">الرسائل</a> <span class="notification-count" id="message-count">0</span></li>
-                </ul>
-            </nav>
-            <div class="user-info">
-                <span id="username">مرحباً، الزائر!</span>
-                <img src="https://via.placeholder.com/40" alt="صورة الملف الشخصي" class="user-avatar" id="user-avatar">
-                <button id="logout-btn">تسجيل الخروج</button>
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>تعل<span>يم</span></h1>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث في المجتمع...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> حسابي</a>
+                    <a href="#">
+                        <i class="fas fa-bell"></i>
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
             </div>
         </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="abood.html"><i class="fas fa-graduation-cap"></i> الدورات التدريبية</a></li>
+                    <li><a href="note.html"><i class="fas fa-blog"></i> المقالات والمدونة</a></li>
+                    <li><a href="tools.html"><i class="fas fa-tools"></i> الأدوات والموارد</a></li>
+                    <li class="nav-item active">
+                        <a href="public.html"><i class="fas fa-users"></i> مجتمع المتعلمين</a>
+                        <div class="dropdown">
+                            <a href="#"><i class="fas fa-comments"></i> منتدى النقاش</a>
+                            <a href="#"><i class="fas fa-user-friends"></i> مجموعات الدراسة</a>
+                            <a href="#"><i class="fas fa-calendar-alt"></i> الفعاليات</a>
+                            <a href="#"><i class="fas fa-trophy"></i> التحديات</a>
+                        </div>
+                    </li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
-    <main class="container community-content">
-        <section id="forums" class="community-section">
-            <h2 class="section-title">المنتديات الرئيسية</h2>
-            <div class="forum-categories">
-                <div class="forum-card">
-                    <h3>منتدى الدورات العامة</h3>
-                    <p>مناقشات حول جميع الدورات والمواد التعليمية.</p>
-                    <a href="forum-category.html?id=1" class="btn">عرض المنتدى</a>
-                </div>
-                <div class="forum-card">
-                    <h3>المساعدة والدعم الفني</h3>
-                    <p>للمشاكل التقنية والأسئلة الشائعة حول الموقع.</p>
-                    <a href="forum-category.html?id=2" class="btn">عرض المنتدى</a>
-                </div>
-                </div>
-
-            <h3 class="section-subtitle">آخر المشاركات</h3>
-            <div class="latest-posts" id="latest-posts">
-                <div class="post-item">
-                    <h4><a href="#">سؤال حول الوحدة 3 في دورة البرمجة</a></h4>
-                    <p>بواسطة: **محمد** في **منتدى البرمجة** - <span class="post-date">منذ 10 دقائق</span></p>
-                    <p>لدي مشكلة في فهم مفهوم الـ closures، هل يمكن لأحد المساعدة؟</p>
-                </div>
-                <div class="post-item">
-                    <h4><a href="#">نصائح لتعلم اللغة الإنجليزية بسرعة</a></h4>
-                    <p>بواسطة: **فاطمة** في **منتدى اللغات** - <span class="post-date">منذ ساعة</span></p>
-                    <p>أشارككم بعض النصائح التي ساعدتني في تحسين لغتي الإنجليزية...</p>
-                </div>
-            </div>
-            <button class="btn primary-btn create-post-btn">إنشاء مشاركة جديدة</button>
-        </section>
-
-        <section id="profile" class="community-section user-profile-section hidden">
-            <h2 class="section-title">ملفي الشخصي</h2>
-            <div class="profile-header">
-                <img src="https://via.placeholder.com/150" alt="صورة الملف الشخصي" class="profile-avatar" id="profile-user-avatar">
-                <div>
-                    <h3 id="profile-username">اسم المستخدم</h3>
-                    <p id="profile-bio">هنا تضع نبذة مختصرة عنك وعن اهتماماتك التعليمية.</p>
-                    <p>البريد الإلكتروني: <span id="profile-email">user@example.com</span></p>
-                    <button class="btn edit-profile-btn">تعديل الملف الشخصي</button>
-                </div>
-            </div>
-            <div class="profile-details">
-                <h4>الدورات المسجل بها</h4>
-                <ul id="profile-courses">
-                    <li>دورة برمجة الويب المتقدمة <span class="course-status">(جاري)</span></li>
-                    <li>أساسيات علوم البيانات <span class="course-status">(مكتملة)</span></li>
-                </ul>
-                <h4>شارات الإنجاز</h4>
-                <div class="badges" id="profile-badges">
-                    <span class="badge">المساهم النشط</span>
-                    <span class="badge">خبير برمجة</span>
-                </div>
-                <h4>نشاطاتي</h4>
-                <div class="user-activities" id="user-activities">
-                    <div class="activity-item">
-                        <p>نشرت موضوع: <a href="#">أفضل مصادر لتعلم ReactJS</a></p>
-                        <span class="activity-date">2024-05-15</span>
-                    </div>
-                    <div class="activity-item">
-                        <p>ردت على: <a href="#">مشكلة في ربط قاعدة البيانات</a></p>
-                        <span class="activity-date">2024-05-10</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="community-section hidden">
-            <h2 class="section-title">مساعدة & دعم</h2>
-            <div class="faq-accordion">
-                <div class="accordion-item">
-                    <button class="accordion-header">كيف يمكنني إنشاء حساب؟</button>
-                    <div class="accordion-content">
-                        <p>لإنشاء حساب، يرجى زيارة صفحة التسجيل وملء البيانات المطلوبة.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">كيف أطرح سؤال في المنتدى؟</button>
-                    <div class="accordion-content">
-                        <p>انتقل إلى قسم المنتديات، اختر الفئة المناسبة، ثم اضغط على زر "إنشاء مشاركة جديدة".</p>
-                    </div>
-                </div>
-                </div>
-            <p>لمزيد من المساعدة، يرجى <a href="#" id="contact-support-btn">التواصل مع الدعم</a>.</p>
-        </section>
-
-        <section id="messages" class="community-section hidden">
-            <h2 class="section-title">رسائلي الخاصة</h2>
-            <div class="message-list" id="message-list">
-                <div class="message-item">
-                    <div class="message-sender">
-                        <img src="https://via.placeholder.com/30" alt="صورة المرسل" class="sender-avatar">
-                        <span>أحمد</span>
-                    </div>
-                    <p class="message-preview">مرحباً! لدي سؤال بخصوص مشروع الدورة...</p>
-                    <span class="message-date">منذ 5 دقائق</span>
-                    <a href="#" class="btn view-message-btn">عرض</a>
-                </div>
-                </div>
-            <button class="btn primary-btn compose-message-btn">إنشاء رسالة جديدة</button>
-        </section>
-
-        <div id="create-post-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <h3>إنشاء مشاركة جديدة</h3>
-                <form id="new-post-form">
-                    <label for="post-title">عنوان المشاركة:</label>
-                    <input type="text" id="post-title" required>
-                    <label for="post-category">الفئة:</label>
-                    <select id="post-category" required>
-                        <option value="">اختر فئة</option>
-                        <option value="general">عامة</option>
-                        <option value="programming">برمجة</option>
-                        <option value="languages">لغات</option>
-                    </select>
-                    <label for="post-content">محتوى المشاركة:</label>
-                    <textarea id="post-content" rows="10" required></textarea>
-                    <button type="submit" class="btn primary-btn">نشر المشاركة</button>
-                </form>
-            </div>
-        </div>
-
-        <div id="edit-profile-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <h3>تعديل الملف الشخصي</h3>
-                <form id="edit-profile-form">
-                    <label for="edit-profile-bio">نبذة عني:</label>
-                    <textarea id="edit-profile-bio" rows="5"></textarea>
-                    <label for="edit-profile-avatar">تغيير الصورة الشخصية:</label>
-                    <input type="file" id="edit-profile-avatar" accept="image/*">
-                    <button type="submit" class="btn primary-btn">حفظ التغييرات</button>
-                </form>
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="main-footer">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <p>&copy; 2024 اسم موقعك. جميع الحقوق محفوظة.</p>
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="#">سياسة الخصوصية</a></li>
-                    <li><a href="#">شروط الاستخدام</a></li>
-                </ul>
-            </nav>
+            <div class="page-header-content">
+                <h1>مجتمع المتعلمين</h1>
+                <p>انضم إلى مجتمعنا النشط من المهتمين بتقنية المعلومات، شارك في النقاشات، انضم إلى مجموعات الدراسة، وطور مهاراتك مع الآخرين</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Page -->
+    <section class="community-page">
+        <div class="container">
+            <div class="community-container">
+                <!-- Main Content -->
+                <div class="community-content">
+                    <!-- Forum Section -->
+                    <div class="community-section">
+                        <div class="section-header">
+                            <h2 class="section-title"><i class="fas fa-comments"></i> منتدى النقاش</h2>
+                            <a href="#" class="view-all">عرض جميع المناقشات</a>
+                        </div>
+                        
+                        <div class="forum-threads">
+                            <!-- Thread 1 -->
+                            <div class="thread-card">
+                                <div class="thread-icon">
+                                    <i class="fas fa-question"></i>
+                                </div>
+                                <div class="thread-content">
+                                    <h3 class="thread-title">أفضل طريقة لتعلم React في 2023</h3>
+                                    <p class="thread-excerpt">أبحث عن نصائح حول أفضل مسار لتعلم React.js للمبتدئين. هل تنصحون بدورات معينة أو مشاريع عملية؟</p>
+                                    <div class="thread-meta">
+                                        <span>بواسطة: أحمد محمد</span>
+                                        <span>تاريخ: 15 يونيو 2023</span>
+                                    </div>
+                                    <div class="thread-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i> 24 رد
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-eye"></i> 156 مشاهدة
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i> 42
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Thread 2 -->
+                            <div class="thread-card">
+                                <div class="thread-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="thread-content">
+                                    <h3 class="thread-title">أفكار مشاريع لتطوير مهارات Python</h3>
+                                    <p class="thread-excerpt">شاركوني أفكار مشاريع عملية باستخدام Python لتحسين مهارات البرمجة وإثراء المحفظة الشخصية.</p>
+                                    <div class="thread-meta">
+                                        <span>بواسطة: سارة عبد الله</span>
+                                        <span>تاريخ: 14 يونيو 2023</span>
+                                    </div>
+                                    <div class="thread-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i> 18 رد
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-eye"></i> 98 مشاهدة
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i> 35
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Thread 3 -->
+                            <div class="thread-card">
+                                <div class="thread-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="thread-content">
+                                    <h3 class="thread-title">مقارنة بين Docker وKubernetes</h3>
+                                    <p class="thread-excerpt">أحتاج مساعدة في فهم الفرق بين Docker وKubernetes ومتى نستخدم كل منهما في مشاريع التطوير.</p>
+                                    <div class="thread-meta">
+                                        <span>بواسطة: محمد خالد</span>
+                                        <span>تاريخ: 12 يونيو 2023</span>
+                                    </div>
+                                    <div class="thread-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i> 32 رد
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-eye"></i> 210 مشاهدة
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i> 58
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Thread 4 -->
+                            <div class="thread-card">
+                                <div class="thread-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="thread-content">
+                                    <h3 class="thread-title">نصائح أمنية لحماية تطبيقات الويب</h3>
+                                    <p class="thread-excerpt">ما هي أهم الممارسات الأمنية التي يجب اتباعها عند تطوير تطبيقات ويب لحمايتها من الاختراقات؟</p>
+                                    <div class="thread-meta">
+                                        <span>بواسطة: علي حسن</span>
+                                        <span>تاريخ: 10 يونيو 2023</span>
+                                    </div>
+                                    <div class="thread-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i> 27 رد
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-eye"></i> 178 مشاهدة
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i> 47
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="new-thread-btn">
+                            <i class="fas fa-plus"></i> بدء مناقشة جديدة
+                        </button>
+                    </div>
+                    
+                    <!-- Study Groups Section -->
+                    <div class="community-section">
+                        <div class="section-header">
+                            <h2 class="section-title"><i class="fas fa-user-friends"></i> مجموعات الدراسة</h2>
+                            <a href="#" class="view-all">عرض جميع المجموعات</a>
+                        </div>
+                        
+                        <div class="groups-grid">
+                            <!-- Group 1 -->
+                            <div class="group-card">
+                                <div class="group-header">
+                                    <div class="group-icon">
+                                        <i class="fab fa-js"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="group-title">مجموعة JavaScript المتقدمة</h3>
+                                        <div class="group-topic">تطوير الويب</div>
+                                    </div>
+                                </div>
+                                <div class="group-body">
+                                    <div class="group-meta">
+                                        <div class="group-members">
+                                            <i class="fas fa-users"></i> 24 عضو
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-user-check"></i> 4 متصل
+                                        </div>
+                                    </div>
+                                    <p class="group-description">مجموعة مخصصة لمناقشة مفاهيم JavaScript المتقدمة مثل الـ Async/Await، الـ Promises، والـ Functional Programming.</p>
+                                    
+                                    <div class="group-progress">
+                                        <div class="progress-bar"></div>
+                                    </div>
+                                    
+                                    <div class="group-stats">
+                                        <span>65% اكتمال</span>
+                                        <span>12/16 درس</span>
+                                    </div>
+                                    
+                                    <button class="join-btn">انضم إلى المجموعة</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Group 2 -->
+                            <div class="group-card">
+                                <div class="group-header">
+                                    <div class="group-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="group-title">مجموعة الأمن السيبراني</h3>
+                                        <div class="group-topic">أمن المعلومات</div>
+                                    </div>
+                                </div>
+                                <div class="group-body">
+                                    <div class="group-meta">
+                                        <div class="group-members">
+                                            <i class="fas fa-users"></i> 18 عضو
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-user-check"></i> 2 متصل
+                                        </div>
+                                    </div>
+                                    <p class="group-description">مجموعة لدراسة أساسيات الأمن السيبراني واختبار الاختراق الأخلاقي. نناقش أدوات وتقنيات الحماية.</p>
+                                    
+                                    <div class="group-progress">
+                                        <div class="progress-bar" style="width: 45%;"></div>
+                                    </div>
+                                    
+                                    <div class="group-stats">
+                                        <span>45% اكتمال</span>
+                                        <span>9/20 درس</span>
+                                    </div>
+                                    
+                                    <button class="join-btn">انضم إلى المجموعة</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Group 3 -->
+                            <div class="group-card">
+                                <div class="group-header">
+                                    <div class="group-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="group-title">مجموعة الذكاء الاصطناعي</h3>
+                                        <div class="group-topic">تعلم الآلة</div>
+                                    </div>
+                                </div>
+                                <div class="group-body">
+                                    <div class="group-meta">
+                                        <div class="group-members">
+                                            <i class="fas fa-users"></i> 32 عضو
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-user-check"></i> 7 متصل
+                                        </div>
+                                    </div>
+                                    <p class="group-description">مجموعة لدراسة خوارزميات تعلم الآلة والتعلم العميق باستخدام Python ومكتبات مثل TensorFlow وPyTorch.</p>
+                                    
+                                    <div class="group-progress">
+                                        <div class="progress-bar" style="width: 80%;"></div>
+                                    </div>
+                                    
+                                    <div class="group-stats">
+                                        <span>80% اكتمال</span>
+                                        <span>16/20 درس</span>
+                                    </div>
+                                    
+                                    <button class="join-btn">انضم إلى المجموعة</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="community-sidebar">
+                    <!-- User Profile -->
+                    <div class="sidebar-widget">
+                        <div class="user-profile">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 class="user-name">أحمد محمد</h3>
+                            <div class="user-title">مطور ويب متقدم</div>
+                            
+                            <div class="user-stats">
+                                <div class="stat-box">
+                                    <div class="stat-value">24</div>
+                                    <div class="stat-label">مشاركة</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value">5</div>
+                                    <div class="stat-label">مجموعات</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-value">142</div>
+                                    <div class="stat-label">نقاط</div>
+                                </div>
+                            </div>
+                            
+                            <a href="#" class="profile-link">عرض الملف الشخصي</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Active Users -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">أعضاء متصلون الآن</h3>
+                        <ul class="active-users">
+                            <li class="active-user">
+                                <div class="user-small-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-small-info">
+                                    <div class="user-small-name">سارة عبد الله</div>
+                                    <div class="user-small-status">
+                                        <span class="status-online"></span> متصل الآن
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="active-user">
+                                <div class="user-small-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-small-info">
+                                    <div class="user-small-name">محمد خالد</div>
+                                    <div class="user-small-status">
+                                        <span class="status-online"></span> متصل الآن
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="active-user">
+                                <div class="user-small-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-small-info">
+                                    <div class="user-small-name">علي حسن</div>
+                                    <div class="user-small-status">
+                                        <span class="status-online"></span> متصل الآن
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="active-user">
+                                <div class="user-small-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-small-info">
+                                    <div class="user-small-name">لينا أحمد</div>
+                                    <div class="user-small-status">
+                                        <span class="status-online"></span> متصل الآن
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <button class="start-group-btn">
+                            <i class="fas fa-plus"></i> إنشاء مجموعة جديدة
+                        </button>
+                    </div>
+                    
+                    <!-- Community Events -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">فعاليات قادمة</h3>
+                        <ul class="events-list">
+                            <li class="event-item">
+                                <div class="event-date">
+                                    <div class="event-day">20</div>
+                                    <div class="event-month">يونيو</div>
+                                </div>
+                                <div class="event-info">
+                                    <h4 class="event-title">ورشة عمل: أساسيات React</h4>
+                                    <div class="event-time">
+                                        <i class="far fa-clock"></i> 6:00 مساءً - 8:00 مساءً
+                                    </div>
+                                    <a href="#" class="join-event">
+                                        <i class="fas fa-external-link-alt"></i> سجل حضورك
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-date">
+                                    <div class="event-day">25</div>
+                                    <div class="event-month">يونيو</div>
+                                </div>
+                                <div class="event-info">
+                                    <h4 class="event-title">ندوة: مستقبل الذكاء الاصطناعي</h4>
+                                    <div class="event-time">
+                                        <i class="far fa-clock"></i> 7:00 مساءً - 9:00 مساءً
+                                    </div>
+                                    <a href="#" class="join-event">
+                                        <i class="fas fa-external-link-alt"></i> سجل حضورك
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-date">
+                                    <div class="event-day">30</div>
+                                    <div class="event-month">يونيو</div>
+                                </div>
+                                <div class="event-info">
+                                    <h4 class="event-title">تحدي البرمجة: مسابقة الأسبوع</h4>
+                                    <div class="event-time">
+                                        <i class="far fa-clock"></i> 5:00 مساءً - 7:00 مساءً
+                                    </div>
+                                    <a href="#" class="join-event">
+                                        <i class="fas fa-external-link-alt"></i> سجل حضورك
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>عن الموقع</h3>
+                    <div class="footer-about">
+                        <p>نحن منصة تعليمية متخصصة في تقديم دورات ومقالات تقنية عالية الجودة لمساعدة المهتمين بمجال تكنولوجيا المعلومات على تطوير مهاراتهم والارتقاء بمستواهم المهني.</p>
+                        <div class="social-links-footer">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="abood.html"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                        <li><a href="note.html"><i class="fas fa-chevron-left"></i> المقالات والمدونة</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات والموارد</a></li>
+                        <li><a href="public.html"><i class="fas fa-chevron-left"></i> مجتمع المتعلمين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>مجتمع المتعلمين</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> منتدى النقاش</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> مجموعات الدراسة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الفعاليات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> التحديات</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>معلومات قانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الإرجاع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع تعليم تقنية المعلومات</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // --- JavaScript Code (Combined) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // A simple client-side routing/tabbing mechanism
-            const navLinks = document.querySelectorAll('.main-nav a');
-            const sections = document.querySelectorAll('.community-section');
-            const userAvatarHeader = document.getElementById('user-avatar');
-            const usernameHeader = document.getElementById('username');
-            const logoutBtn = document.getElementById('logout-btn');
-
-            // Modals
-            const createPostModal = document.getElementById('create-post-modal');
-            const createPostBtn = document.querySelector('.create-post-btn');
-            const closeButtons = document.querySelectorAll('.modal .close-button');
-            const editProfileModal = document.getElementById('edit-profile-modal');
-            const editProfileBtn = document.querySelector('.edit-profile-btn');
-
-            // Default user data (This would come from your backend in a real app)
-            const currentUser = {
-                name: "زائر كريم",
-                avatar: "https://via.placeholder.com/40",
-                isLoggedIn: false, // Set to true after actual login
-                bio: "أنا متحمس للتعلم واستكشاف مجالات جديدة في المعرفة.",
-                email: "guest@example.com",
-                courses: [
-                    { name: "مقدمة في البرمجة", status: "جاري" },
-                    { name: "التصميم الجرافيكي للمبتدئين", status: "مكتملة" }
-                ],
-                badges: ["المبتدئ النشط", "المستكشف الرقمي"],
-                activities: [
-                    { type: "post", content: "نشرت موضوع: أفضل طرق لتعلم اللغات الجديدة", date: "2024-06-01" },
-                    { type: "reply", content: "ردت على: سؤال حول الذكاء الاصطناعي", date: "2024-05-28" }
-                ]
-            };
-
-            // --- Function to update UI based on user login status ---
-            function updateHeaderUserInfo(user) {
-                if (user.isLoggedIn) {
-                    usernameHeader.textContent = `مرحباً، ${user.name}!`;
-                    userAvatarHeader.src = user.avatar;
-                    logoutBtn.style.display = 'inline-block';
-                    // Also update profile section if it's visible
-                    document.getElementById('profile-user-avatar').src = user.avatar;
-                    document.getElementById('profile-username').textContent = user.name;
-                    document.getElementById('profile-bio').textContent = user.bio;
-                    document.getElementById('profile-email').textContent = user.email;
-                } else {
-                    usernameHeader.textContent = `مرحباً، الزائر!`;
-                    userAvatarHeader.src = "https://via.placeholder.com/40"; // Default avatar
-                    logoutBtn.style.display = 'none';
-                }
-            }
-
-            // Initialize user info on page load
-            updateHeaderUserInfo(currentUser);
-
-            // --- Navigation/Tab Logic ---
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault(); // Prevent default anchor behavior
-                    const targetId = link.getAttribute('href').substring(1); // Get section ID
-
-                    // Hide all sections
-                    sections.forEach(section => section.classList.add('hidden'));
-
-                    // Show the target section
-                    const targetSection = document.getElementById(targetId);
-                    if (targetSection) {
-                        targetSection.classList.remove('hidden');
-                        // Specific calls for profile/messages to load data if needed
-                        if (targetId === 'profile') {
-                            loadUserProfile(currentUser); // Load dynamic profile data
-                        } else if (targetId === 'messages') {
-                            loadMessages(); // Load messages
-                        } else if (targetId === 'forums') {
-                            fetchForumPosts(); // Load forum posts
-                        }
-                    }
-
-                    // Optional: Update active link styling
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    link.classList.add('active');
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to thread cards on hover
+            const threadCards = document.querySelectorAll('.thread-card');
+            
+            threadCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.backgroundColor = '#e2e8f0';
+                    card.style.transform = 'translateX(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.backgroundColor = '#f1f5f9';
+                    card.style.transform = 'translateX(0)';
                 });
             });
-
-            // Default to show forums section
-            if (sections.length > 0) {
-                sections[0].classList.remove('hidden');
-                navLinks[0].classList.add('active');
-                fetchForumPosts(); // Load initial forum data
-            }
-
-            // --- Modal Logic ---
-            createPostBtn.addEventListener('click', () => {
-                createPostModal.style.display = 'flex';
-            });
-
-            editProfileBtn.addEventListener('click', () => {
-                // Pre-fill form with current user data (replace with actual data from backend)
-                document.getElementById('edit-profile-bio').value = currentUser.bio;
-                editProfileModal.style.display = 'flex';
-            });
-
-            closeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    button.closest('.modal').style.display = 'none';
+            
+            // Group cards hover effect
+            const groupCards = document.querySelectorAll('.group-card');
+            
+            groupCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
                 });
             });
-
-            window.addEventListener('click', (event) => {
-                if (event.target === createPostModal) {
-                    createPostModal.style.display = 'none';
-                }
-                if (event.target === editProfileModal) {
-                    editProfileModal.style.display = 'none';
-                }
-            });
-
-            // --- Form Submissions (placeholders) ---
-            const newPostForm = document.getElementById('new-post-form');
-            newPostForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const title = document.getElementById('post-title').value;
-                const category = document.getElementById('post-category').value;
-                const content = document.getElementById('post-content').value;
-
-                console.log('New Post:', { title, category, content });
-                alert('تم إرسال المشاركة (هذه وظيفة وهمية تحتاج إلى الواجهة الخلفية)');
-                createPostModal.style.display = 'none';
-                newPostForm.reset();
-                // In a real app, you'd send this to your backend API
-            });
-
-            const editProfileForm = document.getElementById('edit-profile-form');
-            editProfileForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const newBio = document.getElementById('edit-profile-bio').value;
-                const newAvatarFile = document.getElementById('edit-profile-avatar').files[0];
-
-                console.log('Update Profile:', { bio: newBio, avatar: newAvatarFile ? newAvatarFile.name : 'No new avatar' });
-                // Update currentUser object (temporary for demo)
-                currentUser.bio = newBio;
-                if (newAvatarFile) {
-                    // In a real app, upload file and get URL
-                    currentUser.avatar = URL.createObjectURL(newAvatarFile);
-                }
-                updateHeaderUserInfo(currentUser); // Update header and profile section
-                alert('تم حفظ تغييرات الملف الشخصي (هذه وظيفة وهمية)');
-                editProfileModal.style.display = 'none';
-                editProfileForm.reset();
-                // In a real app, you'd send this to your backend API
-            });
-
-            // --- FAQ Accordion Logic ---
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const item = header.closest('.accordion-item');
-                    item.classList.toggle('active');
+            
+            // Join group buttons
+            const joinButtons = document.querySelectorAll('.join-btn');
+            joinButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const groupCard = this.closest('.group-card');
+                    const groupTitle = groupCard.querySelector('.group-title').textContent;
+                    this.textContent = 'تم الانضمام!';
+                    this.style.backgroundColor = '#22c55e';
+                    this.style.color = 'white';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'انضم إلى المجموعة';
+                        this.style.backgroundColor = '';
+                        this.style.color = '';
+                    }, 2000);
+                    
+                    alert(`لقد انضممت إلى مجموعة: ${groupTitle}`);
                 });
             });
-
-            // --- Logout Button (placeholder) ---
-            logoutBtn.addEventListener('click', () => {
-                alert('تم تسجيل الخروج (هذه وظيفة وهمية)');
-                currentUser.isLoggedIn = false; // Simulate logout
-                currentUser.name = "زائر كريم";
-                currentUser.avatar = "https://via.placeholder.com/40";
-                updateHeaderUserInfo(currentUser);
-                // In a real app, you'd clear session/token and redirect to login page
+            
+            // Create new thread button
+            const newThreadBtn = document.querySelector('.new-thread-btn');
+            newThreadBtn.addEventListener('click', function() {
+                alert('سيتم فتح نموذج لبدء مناقشة جديدة');
             });
-
-            // Simulate login for demonstration (remove in production)
-            setTimeout(() => {
-                currentUser.isLoggedIn = true;
-                currentUser.name = "سارة أحمد";
-                currentUser.avatar = "https://via.placeholder.com/40/FF5733/FFFFFF?text=SA";
-                currentUser.bio = "متحمسة لتعلم البرمجة وتطوير الويب.";
-                currentUser.email = "sara.ahmed@example.com";
-                updateHeaderUserInfo(currentUser);
-                // Update messages count
-                const messageCountSpan = document.getElementById('message-count');
-                messageCountSpan.textContent = "3"; // Simulate 3 new messages
-            }, 1000); // Simulate data loading
-
-            // --- Dummy functions for dynamic content (would be fetched from backend) ---
-            function loadUserProfile(user) {
-                // This function would typically fetch user data from an API
-                // For demo, we use the `currentUser` object
-
-                const profileUsername = document.getElementById('profile-username');
-                const profileBio = document.getElementById('profile-bio');
-                const profileEmail = document.getElementById('profile-email');
-                const profileAvatar = document.getElementById('profile-user-avatar');
-                const profileCoursesList = document.getElementById('profile-courses');
-                const profileBadgesDiv = document.getElementById('profile-badges');
-                const userActivitiesDiv = document.getElementById('user-activities');
-
-                profileUsername.textContent = user.name;
-                profileBio.textContent = user.bio;
-                profileEmail.textContent = user.email;
-                profileAvatar.src = user.avatar;
-
-                // Clear previous content
-                profileCoursesList.innerHTML = '';
-                profileBadgesDiv.innerHTML = '';
-                userActivitiesDiv.innerHTML = '';
-
-                // Render courses
-                user.courses.forEach(course => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `${course.name} <span class="course-status ${course.status === 'جاري' ? '' : 'inactive'}">${course.status}</span>`;
-                    profileCoursesList.appendChild(li);
+            
+            // Start new group button
+            const startGroupBtn = document.querySelector('.start-group-btn');
+            startGroupBtn.addEventListener('click', function() {
+                alert('سيتم فتح نموذج لإنشاء مجموعة دراسة جديدة');
+            });
+            
+            // Join event links
+            const joinEventLinks = document.querySelectorAll('.join-event');
+            joinEventLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const eventItem = this.closest('.event-item');
+                    const eventTitle = eventItem.querySelector('.event-title').textContent;
+                    alert(`لقد سجلت حضورك في الفعالية: ${eventTitle}`);
                 });
-
-                // Render badges
-                user.badges.forEach(badgeText => {
-                    const span = document.createElement('span');
-                    span.classList.add('badge');
-                    span.textContent = badgeText;
-                    profileBadgesDiv.appendChild(span);
-                });
-
-                // Render activities
-                user.activities.forEach(activity => {
-                    const div = document.createElement('div');
-                    div.classList.add('activity-item');
-                    let contentHtml = '';
-                    if (activity.type === 'post') {
-                        contentHtml = `<p>نشرت موضوع: <a href="#">${activity.content.replace('نشرت موضوع: ', '')}</a></p>`;
-                    } else if (activity.type === 'reply') {
-                        contentHtml = `<p>ردت على: <a href="#">${activity.content.replace('ردت على: ', '')}</a></p>`;
-                    }
-                    div.innerHTML = `${contentHtml}<span class="activity-date">${activity.date}</span>`;
-                    userActivitiesDiv.appendChild(div);
-                });
-            }
-
-            function loadMessages() {
-                // This would fetch messages from your backend API
-                const messageList = document.getElementById('message-list');
-                messageList.innerHTML = ''; // Clear existing messages
-
-                const dummyMessages = [
-                    { sender: "علي", avatar: "https://via.placeholder.com/30/3366FF/FFFFFF?text=AL", preview: "مرحباً! هل أنت متاح لمناقشة المشروع؟", date: "منذ 10 دقائق" },
-                    { sender: "مريم", avatar: "https://via.placeholder.com/30/FF33FF/FFFFFF?text=MR", preview: "لقد أرسلت لك الملاحظات على التقرير.", date: "منذ ساعة" },
-                    { sender: "دعم الموقع", avatar: "https://via.placeholder.com/30/66BB6A/FFFFFF?text=SD", preview: "شكرًا لتواصلك، طلب الدعم الخاص بك قيد المعالجة.", date: "أمس" }
-                ];
-
-                dummyMessages.forEach(msg => {
-                    const div = document.createElement('div');
-                    div.classList.add('message-item');
-                    div.innerHTML = `
-                        <div class="message-sender">
-                            <img src="${msg.avatar}" alt="صورة المرسل" class="sender-avatar">
-                            <span>${msg.sender}</span>
-                        </div>
-                        <p class="message-preview">${msg.preview}</p>
-                        <span class="message-date">${msg.date}</span>
-                        <a href="#" class="btn view-message-btn">عرض</a>
-                    `;
-                    messageList.appendChild(div);
-                });
-            }
-
-            // Forum specific logic (originally in forum.js)
-            function fetchForumPosts(categoryId = null) {
-                console.log(`Fetching posts for category: ${categoryId || 'All'}`);
-                // In a real application, you'd make an API call here:
-                // fetch(`/api/forums/posts?category=${categoryId}`)
-                //   .then(response => response.json())
-                //   .then(posts => {
-                //     // Render posts to the DOM
-                //     console.log('Posts loaded:', posts);
-                //   })
-                //   .catch(error => console.error('Error fetching forum posts:', error));
-
-                // For demonstration, let's just update latest posts area with dummy data
-                const latestPostsDiv = document.getElementById('latest-posts');
-                if (latestPostsDiv) {
-                    latestPostsDiv.innerHTML = `
-                        <div class="post-item">
-                            <h4><a href="#">سؤال حول تطوير الواجهة الأمامية</a></h4>
-                            <p>بواسطة: <strong>أحمد</strong> في <strong>منتدى تطوير الويب</strong> - <span class="post-date">منذ 30 دقيقة</span></p>
-                            <p>ما هي أفضل الممارسات لتنظيم كود CSS في مشاريع كبيرة؟</p>
-                        </div>
-                        <div class="post-item">
-                            <h4><a href="#">شرح مبسط لمفهوم الخوارزميات</a></h4>
-                            <p>بواسطة: <strong>ليلى</strong> في <strong>منتدى علوم الحاسوب</strong> - <span class="post-date">منذ ساعتين</span></p>
-                            <p>أحاول تبسيط الخوارزميات للمبتدئين، إليكم بعض الأمثلة...</p>
-                        </div>
-                        <div class="post-item">
-                            <h4><a href="#">ورشة عمل مجانية لتعلم بايثون</a></h4>
-                            <p>بواسطة: <strong>فريق الموقع</strong> في <strong>الإعلانات</strong> - <span class="post-date">بالأمس</span></p>
-                            <p>سوف نستضيف ورشة عمل تفاعلية عبر الإنترنت يوم السبت القادم.</p>
-                        </div>
-                    `;
-                }
-            }
-
-            // Profile specific logic (originally in profile.js)
-            const editProfileAvatarInput = document.getElementById('edit-profile-avatar');
-            if (editProfileAvatarInput) {
-                editProfileAvatarInput.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        console.log('New profile picture selected:', file.name);
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            document.getElementById('profile-user-avatar').src = event.target.result;
-                            document.getElementById('user-avatar').src = event.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
-
-            // Notifications specific logic (originally in notifications.js)
-            const messageCountSpan = document.getElementById('message-count');
-
-            function fetchNotificationCount() {
-                // This would fetch notification count from your backend API
-                // For demo:
-                // messageCountSpan.textContent = "2"; // Simulate 2 new messages
-                // messageCountSpan.style.display = 'inline-block';
-            }
-
-            fetchNotificationCount(); // Initial fetch
+            });
         });
     </script>
 </body>
